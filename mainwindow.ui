@@ -1,0 +1,565 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1572</width>
+    <height>832</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButton_supprimer">
+    <property name="geometry">
+     <rect>
+      <x>580</x>
+      <y>30</y>
+      <width>231</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(50, 120, 90); /* Couleur verte foncée */
+    /*color: black;*/
+   /* color: #1f472e;*/
+color:black;
+    font-family: &quot;Roboto&quot;, sans-serif;
+     
+    font-weight: bold; /* texte en gras */
+    font-size: 20px;
+    text-decoration: underline;  /* Texte souligné */
+    line-height: 1.5;
+
+    width: 200px;
+    height: 40px;
+    opacity: 0.65;
+    text-align: center;
+    
+    border-style: solid;
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease; /* Transition pour effet plus fluide */
+}
+
+QPushButton:hover {
+    background-color: rgb(70, 140, 110); /* Couleur de fond légèrement plus claire au survol */
+    opacity: 0.85; /* Augmentation de l'opacité */
+    transform: scale(1.05); /* Agrandissement léger */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Ombre pour donner de la profondeur */
+}
+
+                                                           
+
+/*                                                  
+QPushButton {
+    background-color: rgb(50, 120, 90); 
+    color: black;
+    
+    font-size: 20px;
+    text-decoration: underline;   
+    line-height: 1.5;
+
+    width: 200px;
+    height: 40px;
+    opacity: 0.65;
+    text-align: center;
+    
+    border-style: solid;
+}
+*/</string>
+    </property>
+    <property name="text">
+     <string>supprimer</string>
+    </property>
+   </widget>
+   <widget class="QTableView" name="tableView_employee">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>150</y>
+      <width>841</width>
+      <height>331</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>160</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>prenom</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>280</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>password</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>340</y>
+      <width>71</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>telephone</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>90</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>nom</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>400</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>poste</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_ajouter">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>40</y>
+      <width>83</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(50, 120, 90); /* Couleur verte foncée */
+    /*color: black;*/
+   /* color: #1f472e;*/
+color:black;
+    font-family: &quot;Roboto&quot;, sans-serif;
+     
+    font-weight: bold; /* texte en gras */
+    font-size: 20px;
+    text-decoration: underline;  /* Texte souligné */
+    line-height: 1.5;
+
+    width: 200px;
+    height: 40px;
+    opacity: 0.65;
+    text-align: center;
+    
+    border-style: solid;
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease; /* Transition pour effet plus fluide */
+}
+
+QPushButton:hover {
+    background-color: rgb(70, 140, 110); /* Couleur de fond légèrement plus claire au survol */
+    opacity: 0.85; /* Augmentation de l'opacité */
+    transform: scale(1.05); /* Agrandissement léger */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Ombre pour donner de la profondeur */
+}
+
+                                                           
+
+/*                                                  
+QPushButton {
+    background-color: rgb(50, 120, 90); 
+    color: black;
+    
+    font-size: 20px;
+    text-decoration: underline;   
+    line-height: 1.5;
+
+    width: 200px;
+    height: 40px;
+    opacity: 0.65;
+    text-align: center;
+    
+    border-style: solid;
+}
+*/</string>
+    </property>
+    <property name="text">
+     <string>ajouter</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_telephone">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>320</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>470</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>disponiblilite </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_ID">
+    <property name="geometry">
+     <rect>
+      <x>380</x>
+      <y>10</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_prenom">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>140</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>20</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string>id </string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_password">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>260</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_nom">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>80</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_login">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>200</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>230</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>login</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_disponibilite">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>470</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_poste">
+    <property name="geometry">
+     <rect>
+      <x>140</x>
+      <y>390</y>
+      <width>181</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>550</y>
+      <width>141</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>heuretravail</string>
+    </property>
+   </widget>
+   <widget class="QDateEdit" name="lineEdit_heureTravail">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>530</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_modifier">
+    <property name="geometry">
+     <rect>
+      <x>630</x>
+      <y>100</y>
+      <width>231</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(50, 120, 90); /* Couleur verte foncée */
+    /*color: black;*/
+   /* color: #1f472e;*/
+color:black;
+    font-family: &quot;Roboto&quot;, sans-serif;
+     
+    font-weight: bold; /* texte en gras */
+    font-size: 20px;
+    text-decoration: underline;  /* Texte souligné */
+    line-height: 1.5;
+
+    width: 200px;
+    height: 40px;
+    opacity: 0.65;
+    text-align: center;
+    
+    border-style: solid;
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease; /* Transition pour effet plus fluide */
+}
+
+QPushButton:hover {
+    background-color: rgb(70, 140, 110); /* Couleur de fond légèrement plus claire au survol */
+    opacity: 0.85; /* Augmentation de l'opacité */
+    transform: scale(1.05); /* Agrandissement léger */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Ombre pour donner de la profondeur */
+}
+
+                                                           
+
+/*                                                  
+QPushButton {
+    background-color: rgb(50, 120, 90); 
+    color: black;
+    
+    font-size: 20px;
+    text-decoration: underline;   
+    line-height: 1.5;
+
+    width: 200px;
+    height: 40px;
+    opacity: 0.65;
+    text-align: center;
+    
+    border-style: solid;
+}
+*/</string>
+    </property>
+    <property name="text">
+     <string>modifier</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pb_pdf">
+    <property name="geometry">
+     <rect>
+      <x>940</x>
+      <y>70</y>
+      <width>231</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(50, 120, 90); /* Couleur verte foncée */
+    /*color: black;*/
+   /* color: #1f472e;*/
+color:black;
+    font-family: &quot;Roboto&quot;, sans-serif;
+     
+    font-weight: bold; /* texte en gras */
+    font-size: 20px;
+    text-decoration: underline;  /* Texte souligné */
+    line-height: 1.5;
+
+    width: 200px;
+    height: 40px;
+    opacity: 0.65;
+    text-align: center;
+    
+    border-style: solid;
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease; /* Transition pour effet plus fluide */
+}
+
+QPushButton:hover {
+    background-color: rgb(70, 140, 110); /* Couleur de fond légèrement plus claire au survol */
+    opacity: 0.85; /* Augmentation de l'opacité */
+    transform: scale(1.05); /* Agrandissement léger */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Ombre pour donner de la profondeur */
+}
+
+                                                           
+
+/*                                                  
+QPushButton {
+    background-color: rgb(50, 120, 90); 
+    color: black;
+    
+    font-size: 20px;
+    text-decoration: underline;   
+    line-height: 1.5;
+
+    width: 200px;
+    height: 40px;
+    opacity: 0.65;
+    text-align: center;
+    
+    border-style: solid;
+}
+*/</string>
+    </property>
+    <property name="text">
+     <string>PDF</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_trier">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>510</y>
+      <width>231</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: rgb(50, 120, 90); /* Couleur verte foncée */
+    /*color: black;*/
+   /* color: #1f472e;*/
+color:black;
+    font-family: &quot;Roboto&quot;, sans-serif;
+     
+    font-weight: bold; /* texte en gras */
+    font-size: 20px;
+    text-decoration: underline;  /* Texte souligné */
+    line-height: 1.5;
+
+    width: 200px;
+    height: 40px;
+    opacity: 0.65;
+    text-align: center;
+    
+    border-style: solid;
+    transition: background-color 0.3s ease, opacity 0.3s ease, transform 0.3s ease; /* Transition pour effet plus fluide */
+}
+
+QPushButton:hover {
+    background-color: rgb(70, 140, 110); /* Couleur de fond légèrement plus claire au survol */
+    opacity: 0.85; /* Augmentation de l'opacité */
+    transform: scale(1.05); /* Agrandissement léger */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Ombre pour donner de la profondeur */
+}
+
+                                                           
+
+/*                                                  
+QPushButton {
+    background-color: rgb(50, 120, 90); 
+    color: black;
+    
+    font-size: 20px;
+    text-decoration: underline;   
+    line-height: 1.5;
+
+    width: 200px;
+    height: 40px;
+    opacity: 0.65;
+    text-align: center;
+    
+    border-style: solid;
+}
+*/</string>
+    </property>
+    <property name="text">
+     <string>tri</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1572</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
