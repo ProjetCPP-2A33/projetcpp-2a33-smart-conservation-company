@@ -1,0 +1,11 @@
+2024-11-13 21:48:52 - Création de la commande pour l'ID 66
+2024-11-13 21:58:49 - Ajout d'une commande pour l'ID 3
+2024-11-13 21:58:56 - Modification d'une commande pour l'ID 3
+2024-11-13 21:59:06 - Suppression d'une commande pour l'ID 400
+2024-11-13 22:00:14 - Ajout d'une commande pour l'ID 55
+2024-11-13 22:10:33 - Ajout d'une commande pour l'ID 1555
+2024-11-13 22:29:35 - Réduction de 10%% appliquée. Ancien prix: 144, Nouveau prix: 144, Points fidélité: 7 pour l'ID 3
+2024-11-13 22:29:43 - Réduction de 10%% appliquée. Ancien prix: 144, Nouveau prix: 144, Points fidélité: 7 pour l'ID 3
+2024-11-13 22:29:48 - Réduction de 10%% appliquée. Ancien prix: 144, Nouveau prix: 144, Points fidélité: 7 pour l'ID 3
+2024-11-13 22:29:56 - Réduction de 10%% appliquée. Ancien prix: 455, Nouveau prix: 409.5, Points fidélité: 22 pour l'ID 66
+2024-11-13 22:30:07 - Réduction de 10%% appliquée. Ancien prix: 409.5, Nouveau prix: 368.55, Points fidélité: 20 pour l'ID 66
