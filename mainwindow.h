@@ -19,11 +19,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_ajouter_clicked(); // Slot for adding an employee
-    void on_pushButton_supprimer_clicked(); // Slot for deleting an employee
+    void on_pushButton_ajouter_clicked();
+    void on_pushButton_supprimer_clicked();
     void on_pushButton_modifier_clicked();
     void on_pb_pdf_clicked();
     void on_pushButton_trier_clicked();
+    void on_pushButton_stats_clicked();
+    void on_pushButton_10_clicked();
 private:
     Ui::MainWindow *ui;
     Employee emp; // Instance of Employee

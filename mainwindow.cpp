@@ -5,6 +5,13 @@
 #include "employee.h"
 #include "connection.h"
 #include <QFileDialog>
+#include <QtCharts/QChartView>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
+
+
+#include <QDialog>
+#include <QVBoxLayout>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -72,7 +79,7 @@ void MainWindow::on_pushButton_ajouter_clicked()
 void MainWindow::on_pushButton_supprimer_clicked()
 {
     qDebug() << "Supprimer button clicked"; // Debug message
-
+/*
     // Check if the database is open before executing the query
     if (!QSqlDatabase::database().isOpen()) {
         qDebug() << "Database is not open!";
@@ -81,7 +88,7 @@ void MainWindow::on_pushButton_supprimer_clicked()
                               QMessageBox::Ok);
         return;
     }
-
+*/
     // Retrieve the employee ID from the input field
     int id = ui->lineEdit_ID->text().toInt();
     bool test = emp.supprimer(id);
@@ -96,7 +103,7 @@ void MainWindow::on_pushButton_supprimer_clicked()
 }
 void MainWindow::on_pushButton_modifier_clicked() {
     qDebug() << "Modifier button clicked"; // Debug message
-
+/*
     if (!QSqlDatabase::database().isOpen()) {
         qDebug() << "Database is not open!";
         QMessageBox::critical(this, tr("Database Error"),
@@ -104,7 +111,7 @@ void MainWindow::on_pushButton_modifier_clicked() {
                               QMessageBox::Ok);
         return;
     }
-
+*/
     // Retrieve employee information from input fields
     int id = ui->lineEdit_ID->text().toInt();
     QString nom = ui->lineEdit_nom->text();
@@ -167,3 +174,37 @@ void MainWindow::on_pushButton_trier_clicked()
     bool ascending = true; // Set to false if you want to sort in descending order
     ui->tableView_employee->setModel(emp.trierParID(ascending));
 }
+
+
+void MainWindow::on_pushButton_stats_clicked() {
+    // Create an instance of Employee (or use an existing instance if you have one)
+    Employee emp;
+
+    // Get the availability statistics
+    QHash<QString, int> stats = emp.statistiquesDisponibilite();
+
+    // Format the statistics to display in a message box
+    QString message = QString("Disponible: %1\nNon Disponible: %2")
+                          .arg(stats["Disponible"])
+                          .arg(stats["Non Disponible"]);
+
+    // Display the statistics in a message box
+    QMessageBox::information(this, "Statistiques de Disponibilité", message);
+}
+
+
+
+void MainWindow::on_pushButton_10_clicked()
+{
+    int id = ui->lineEdit_recherche->text().toInt();
+    Employee emp;
+
+    if (emp.chercherParID(id)) {
+        QMessageBox::information(this, "Search Result", "Employee with ID " + QString::number(id) + " exists.");
+    } else {
+        QMessageBox::information(this, "Search Result", "Employee with ID " + QString::number(id) + " does not exist.");
+    }
+}
+
+
+

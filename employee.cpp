@@ -9,11 +9,14 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QPageSize>
+#include <QHash>
+
+
 using namespace std;
-// Default Constructor
+
 Employee::Employee() {}
 
-// Parameterized Constructor
+
 Employee::Employee(int id, QString nom, QString prenom, QString login, QString password, QString telephone, QString poste, QString disponibilite, QString heureTravail)
     : id(id), nom(nom), prenom(prenom), login(login), password(password), telephone(telephone), poste(poste), disponibilite(disponibilite), heureTravail(heureTravail) {}
 
@@ -39,7 +42,7 @@ void Employee::setPoste(const QString &poste) { this->poste = poste; }
 void Employee::setDisponibilite(const QString &disponibilite) { this->disponibilite = disponibilite; }
 void Employee::setHeureTravail(const QString &heureTravail) { this->heureTravail = heureTravail; }
 
-// Method to add an employee
+
 bool Employee::ajouter() {
     QSqlQuery query;
     query.prepare("INSERT INTO EMPLOYE (IDEMPLOYE, NOMEMPLOYE, PRENOMEMPLOYE, LOGIN, MOTDEPASSE, TELEPHONEEMPLOYE, POSTEEMPLOYE, DISPONIBILITE, HEUREDETRAVAIL) " "VALUES (:id, :nom, :prenom, :login, :password, :telephone, :poste, :disponibilite, :heureTravail)");
@@ -61,7 +64,7 @@ bool Employee::ajouter() {
     return true;
 }
 
-// Method to display employees
+
 QSqlQueryModel* Employee::afficher() {
     QSqlQueryModel* model = new QSqlQueryModel();
     model->setQuery("SELECT IDEMPLOYE, NOMEMPLOYE, PRENOMEMPLOYE, LOGIN, MOTDEPASSE, TELEPHONEEMPLOYE, POSTEEMPLOYE, DISPONIBILITE, HEUREDETRAVAIL FROM EMPLOYE");
@@ -85,7 +88,7 @@ QSqlQueryModel* Employee::afficher() {
     return model;
 }
 
-// Method to delete an employee
+
 bool Employee::supprimer(int id) {
     QSqlQuery query;
     query.prepare("DELETE FROM EMPLOYE WHERE IDEMPLOYE = :id");
@@ -98,10 +101,11 @@ bool Employee::supprimer(int id) {
     qDebug() << "Employee deleted successfully from database.";
     return true;
 }
-// Method to modify an employee
+
 bool Employee::modifier() {
     QSqlQuery query;
-    query.prepare("UPDATE EMPLOYE SET NOMEMPLOYE = :nom, PRENOMEMPLOYE = :prenom, LOGIN = :login, MOTDEPASSE = :password, "
+    query.prepare("UPDATE EMPLOYE "
+                  "SET NOMEMPLOYE = :nom, PRENOMEMPLOYE = :prenom, LOGIN = :login, MOTDEPASSE = :password, "
                   "TELEPHONEEMPLOYE = :telephone, POSTEEMPLOYE = :poste, DISPONIBILITE = :disponibilite, HEUREDETRAVAIL = :heureTravail "
                   "WHERE IDEMPLOYE = :id");
 
@@ -122,133 +126,8 @@ bool Employee::modifier() {
     qDebug() << "Employee modified successfully in database.";
     return true;
 }
-/*
-bool Employee::exporterPDF(const QString &nomFichier, QAbstractItemModel *model)
-{
-    QPdfWriter pdfWriter(nomFichier);
-    pdfWriter.setPageSize(QPageSize(QPageSize::A4));
-    pdfWriter.setResolution(300);
 
-    QPainter painter(&pdfWriter);
-    if (!painter.isActive()) {
-        QMessageBox::critical(nullptr, "Erreur", "Impossible de créer le fichier PDF.");
-        return false;
-    }
 
-    // Paramètres PDF
-    painter.setPen(Qt::black);
-    painter.setFont(QFont("Arial", 20));
-
-    // Titre
-    painter.drawText(2500, 1100, "Liste des Employés");
-
-    // Coordonnées et dimensions des cellules
-    int startX = 200;
-    int startY = 1800;
-    int cellWidth = 1100;
-    int cellHeight = 450;
-
-    // En-têtes du tableau
-    QStringList headers = {"ID", "Nom", "Prénom", "Login", "Téléphone", "Poste", "Disponibilité", "Heure de Travail"};
-    painter.setFont(QFont("Arial", 10, QFont::Bold));
-
-    for (int col = 0; col < headers.size(); ++col) {
-        painter.drawText(startX + col * cellWidth, startY, cellWidth, cellHeight, Qt::AlignCenter, headers[col]);
-    }
-
-    // Données des employés
-    int rowCount = model->rowCount();
-    painter.setFont(QFont("Arial", 10));
-
-    for (int row = 0; row < rowCount; ++row) {
-        QColor bgColor = (row % 2 == 0) ? Qt::lightGray : Qt::white;
-
-        for (int col = 0; col < headers.size(); ++col) {
-            QString data = model->data(model->index(row, col)).toString();
-            QRect cellRect(startX + col * cellWidth, startY + (row + 1) * cellHeight, cellWidth, cellHeight);
-
-            painter.fillRect(cellRect, bgColor); // Remplir la cellule avec la couleur de fond
-            painter.drawText(cellRect, Qt::AlignCenter, data); // Dessiner le texte
-            painter.drawRect(cellRect); // Dessiner le contour de la cellule
-        }
-    }
-
-    // Fin d’écriture du PDF
-    painter.end();
-    return true;
-}*/
-/*bool Employee::exporterPDF(const QString &nomFichier, QAbstractItemModel *model)
-{
-    QPdfWriter pdfWriter(nomFichier);
-    pdfWriter.setPageSize(QPageSize(QPageSize::A4));
-    pdfWriter.setResolution(300);
-
-    QPainter painter(&pdfWriter);
-    if (!painter.isActive()) {
-        QMessageBox::critical(nullptr, "Erreur", "Impossible de créer le fichier PDF.");
-        return false;
-    }
-
-    // Paramètres PDF
-    painter.setPen(Qt::black);
-    painter.setFont(QFont("Arial", 12));
-
-    // Titre
-    painter.drawText(2000, 1000, "Liste des Employés");
-
-    // Coordonnées et dimensions des cellules
-    int startX = 100;
-    int startY = 1300; // Adjusted for better spacing
-    int cellWidth = 1200;
-    int cellHeight = 500;
-
-    // En-têtes du tableau
-    QStringList headers = {"ID", "Nom", "Prénom", "Login", "Téléphone", "Poste", "Disponibilité", "Heure de Travail"};
-    painter.setFont(QFont("Arial", 10, QFont::Bold));
-
-    // Drawing headers
-    for (int col = 0; col < headers.size(); ++col) {
-        painter.drawText(startX + col * cellWidth, startY, cellWidth, cellHeight, Qt::AlignCenter, headers[col]);
-    }
-
-    // Drawing employee data
-    int rowCount = model->rowCount();
-    int currentY = startY + cellHeight;  // Adjusting starting position for rows
-
-    painter.setFont(QFont("Arial", 10));
-
-    for (int row = 0; row < rowCount; ++row) {
-        // Check if we need to add a page break
-        if (currentY + cellHeight > pdfWriter.pageSize().height()) {
-            pdfWriter.newPage();  // Create a new page if we exceed the page limit
-            currentY = startY + cellHeight; // Reset row position for new page
-        }
-
-        QColor bgColor = (row % 2 == 0) ? Qt::lightGray : Qt::white;
-
-        for (int col = 0; col < headers.size(); ++col) {
-            QString data = model->data(model->index(row, col)).toString();
-            QRect cellRect(startX + col * cellWidth, currentY, cellWidth, cellHeight);
-
-            painter.fillRect(cellRect, bgColor); // Fill cell with background color
-            painter.drawText(cellRect, Qt::AlignCenter, data); // Draw text inside cell
-            painter.drawRect(cellRect); // Draw border around cell
-        }
-
-        currentY += cellHeight;  // Move to next row
-    }
-
-    painter.end();
-    return true;
-}*/
-#include "employee.h"
-#include <QSqlError>
-#include <QDebug>
-#include <QPdfWriter>
-#include <QPainter>
-#include <QFileDialog>
-#include <QMessageBox>
-#include <QPageSize>
 
 bool Employee::exporterPDF(const QString &nomFichier, QAbstractItemModel *model) {
     QPdfWriter pdfWriter(nomFichier);
@@ -319,7 +198,63 @@ QSqlQueryModel* Employee::trierParID(bool asc) {
         return nullptr;
     }
 
-    model->setQuery(std::move(query)); // Use std::move to pass the query by move
+    model->setQuery(std::move(query));
     return model;
 }
+
+
+
+
+
+QHash<QString, int> Employee::statistiquesDisponibilite() {
+    QHash<QString, int> stats;
+    stats["Disponible"] = 0;
+    stats["Non Disponible"] = 0;
+
+    QSqlQuery query;
+    query.prepare("SELECT disponibilite, COUNT(*) as count FROM EMPLOYE GROUP BY disponibilite");
+
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de la récupération des statistiques de disponibilité :" << query.lastError().text();
+        return stats;
+    }
+
+    while (query.next()) {
+        QString disponibilite = query.value(0).toString();
+        int count = query.value(1).toInt();
+
+        if (disponibilite == "Disponible") {
+            stats["Disponible"] = count;
+        } else if (disponibilite == "Non Disponible") {
+            stats["Non Disponible"] = count;
+        }
+    }
+
+    return stats;
+}
+
+
+
+
+
+bool Employee::chercherParID(int id) {
+    QSqlQuery query;
+    query.prepare("SELECT * FROM EMPLOYE WHERE IDEMPLOYE = :id");
+    query.bindValue(":id", id);
+
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de la recherche de l'employé par ID :" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        // If there's at least one result, the employee exists
+        return true;
+    }
+
+    // If no results, the employee does not exist
+    return false;
+}
+
+
 

@@ -8,6 +8,7 @@
 #include <QPainter>
 #include <QFileDialog>
 #include <QMessageBox>
+
 class Employee
 {
 private:
@@ -55,6 +56,13 @@ public:
     bool modifier();
     bool exporterPDF(const QString &nomFichier, QAbstractItemModel *model);
     QSqlQueryModel* trierParID(bool asc);
+    QHash<QString, int> statistiquesDisponibilite();
+    //QMap<QString, double> statistiquesDisponibilite();
+
+        bool chercherParID(int id);
+
+
+
 };
 
 #endif // EMPLOYEE_H
