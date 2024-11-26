@@ -1,0 +1,15 @@
+2024-11-17 22:52:50 - Action: Ajout - Produit: lait - 
+2024-11-17 22:53:23 - Action: Ajout - Produit: jus - 
+2024-11-17 22:54:07 - Action: Tri - Produit: Produits - Critère: 1
+2024-11-17 23:04:51 - Action: Ajout - Produit: Lait - 
+2024-11-17 23:05:11 - Action: Ajout - Produit: jus - 
+2024-11-17 23:05:40 - Action: Modification - Produit: Lait - 
+2024-11-17 23:08:46 - Action: Ajout - Produit: lait - 
+2024-11-17 23:08:49 - Action: Tri - Produit: Produits - Critère: 1
+2024-11-17 23:09:33 - Action: Ajout - Produit: boisson - 
+2024-11-17 23:09:39 - Action: Tri - Produit: Produits - Critère: 0
+2024-11-17 23:09:42 - Action: Tri - Produit: Produits - Critère: 1
+2024-11-18 09:19:29 - Action: Ajout - Produit: biscuit - 
+2024-11-18 09:19:57 - Action: Modification - Produit: boisson - 
+2024-11-18 09:30:46 - Action: Ajout - Produit: mklhj - 
+2024-11-18 09:30:54 - Action: Tri - Produit: Produits - Critère: 1
