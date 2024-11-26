@@ -10,7 +10,8 @@
 #include <QMessageBox>
 #include <QPageSize>
 #include <QHash>
-
+#include <QFile>
+#include <QTextStream>
 
 using namespace std;
 
@@ -140,27 +141,27 @@ bool Employee::exporterPDF(const QString &nomFichier, QAbstractItemModel *model)
         return false;
     }
 
-    // Set PDF parameters
+    //
     painter.setPen(Qt::black);
     painter.setFont(QFont("Arial", 20));
 
-    // Title
+
     painter.drawText(2500, 1100, "Liste des Employés");
 
-    // Table coordinates and cell dimensions
+
     int startX = 200;
     int startY = 1800;
     int cellWidth = 1100;
     int cellHeight = 450;
 
-    // Table headers
+
     QStringList headers = {"ID Employé", "Nom", "Prenom", "Login", "Mot de Passe", "Téléphone", "Poste", "Disponibilité", "Heure de Travail"};
     painter.setFont(QFont("Arial", 10, QFont::Bold));
     for (int col = 0; col < headers.size(); ++col) {
         painter.drawText(startX + col * cellWidth, startY, cellWidth, cellHeight, Qt::AlignCenter, headers[col]);
     }
 
-    // Employee data
+
     int rowCount = model->rowCount();
     painter.setFont(QFont("Arial", 10));
     for (int row = 0; row < rowCount; ++row) {
@@ -186,7 +187,7 @@ QSqlQueryModel* Employee::trierParID(bool asc) {
     QSqlQueryModel* model = new QSqlQueryModel();
     QSqlQuery query;
 
-    // Build the query string
+
     QString queryString = "SELECT * FROM EMPLOYE ORDER BY IDEMPLOYE";
     queryString += asc ? " ASC" : " DESC";
 
@@ -202,41 +203,6 @@ QSqlQueryModel* Employee::trierParID(bool asc) {
     return model;
 }
 
-
-
-
-
-QHash<QString, int> Employee::statistiquesDisponibilite() {
-    QHash<QString, int> stats;
-    stats["Disponible"] = 0;
-    stats["Non Disponible"] = 0;
-
-    QSqlQuery query;
-    query.prepare("SELECT disponibilite, COUNT(*) as count FROM EMPLOYE GROUP BY disponibilite");
-
-    if (!query.exec()) {
-        qDebug() << "Erreur lors de la récupération des statistiques de disponibilité :" << query.lastError().text();
-        return stats;
-    }
-
-    while (query.next()) {
-        QString disponibilite = query.value(0).toString();
-        int count = query.value(1).toInt();
-
-        if (disponibilite == "Disponible") {
-            stats["Disponible"] = count;
-        } else if (disponibilite == "Non Disponible") {
-            stats["Non Disponible"] = count;
-        }
-    }
-
-    return stats;
-}
-
-
-
-
-
 bool Employee::chercherParID(int id) {
     QSqlQuery query;
     query.prepare("SELECT * FROM EMPLOYE WHERE IDEMPLOYE = :id");
@@ -248,12 +214,32 @@ bool Employee::chercherParID(int id) {
     }
 
     if (query.next()) {
-        // If there's at least one result, the employee exists
+
         return true;
     }
 
-    // If no results, the employee does not exist
+
     return false;
+}
+
+
+
+QMap<QString, int> Employee::statistiquesDisponibilite() {
+    QMap<QString, int> statistiques;
+    QSqlQuery query;
+    query.prepare("SELECT disponibilite, COUNT(*) FROM EMPLOYE GROUP BY disponibilite");
+
+    if (query.exec()) {
+        while (query.next()) {
+            QString disponibilite = query.value(0).toString();
+            int count = query.value(1).toInt();
+            statistiques.insert(disponibilite, count);
+        }
+    } else {
+        qDebug() << "Erreur lors de la récupération des statistiques de disponibilité :" << query.lastError().text();
+    }
+
+    return statistiques;
 }
 
 

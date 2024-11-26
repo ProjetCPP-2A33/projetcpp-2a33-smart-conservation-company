@@ -1,0 +1,39 @@
+#ifndef GESTIONEMP_H
+#define GESTIONEMP_H
+
+#include <QMainWindow>
+#include "employee.h"
+
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class MainWindow;
+}
+QT_END_NAMESPACE
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
+
+private slots:
+    void on_pushButton_ajouter_clicked();
+    void on_pushButton_supprimer_clicked();
+    void on_pushButton_modifier_clicked();
+    void on_pb_pdf_clicked();
+    void on_pushButton_trier_clicked();
+    void on_pushButton_stats_clicked();
+    void on_pushButton_10_clicked();
+    void on_buttonWelcome_clicked();
+    void on_buttonBackup_clicked();
+    void on_buttonForgotPassword_clicked();
+private:
+    Ui::MainWindow *ui;
+    Employee emp;
+    void backupToFile(const Employee& employee);
+};
+
+
+#endif // GESTIONEMP_H

@@ -49,17 +49,18 @@ public:
     void setDisponibilite(const QString &disponibilite);
     void setHeureTravail(const QString &heureTravail);
 
-    // Fonctions
+
     bool ajouter();
     QSqlQueryModel* afficher();
     bool supprimer(int id);
     bool modifier();
     bool exporterPDF(const QString &nomFichier, QAbstractItemModel *model);
     QSqlQueryModel* trierParID(bool asc);
-    QHash<QString, int> statistiquesDisponibilite();
-    //QMap<QString, double> statistiquesDisponibilite();
-
-        bool chercherParID(int id);
+    //QHash<QString, int> statistiquesDisponibilite();
+    QMap<QString, int> statistiquesDisponibilite();
+    int calculerScore() const;
+    static Employee trouverMeilleurEmployeeParAnnee(int annee, QSqlQueryModel* model);
+    bool chercherParID(int id);
 
 
 
