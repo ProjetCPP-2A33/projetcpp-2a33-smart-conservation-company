@@ -9,3 +9,43 @@
 2024-11-13 22:29:48 - Réduction de 10%% appliquée. Ancien prix: 144, Nouveau prix: 144, Points fidélité: 7 pour l'ID 3
 2024-11-13 22:29:56 - Réduction de 10%% appliquée. Ancien prix: 455, Nouveau prix: 409.5, Points fidélité: 22 pour l'ID 66
 2024-11-13 22:30:07 - Réduction de 10%% appliquée. Ancien prix: 409.5, Nouveau prix: 368.55, Points fidélité: 20 pour l'ID 66
+2024-11-14 00:00:22 - Suppression d'une commande pour l'ID 87878
+2024-11-14 00:00:29 - Suppression d'une commande pour l'ID 4
+2024-11-14 00:00:38 - Suppression d'une commande pour l'ID 1
+2024-11-14 00:00:45 - Suppression d'une commande pour l'ID 3
+2024-11-14 00:00:56 - Suppression d'une commande pour l'ID 90
+2024-11-14 00:01:51 - Ajout d'une commande pour l'ID 1
+2024-11-15 18:14:09 - Ajout d'une commande pour l'ID 1344
+2024-11-15 18:14:27 - Modification d'une commande pour l'ID 1344
+2024-11-15 18:15:15 - Suppression d'une commande pour l'ID 1344
+2024-11-15 18:15:59 - Ajout d'une commande pour l'ID 6767
+2024-11-15 18:16:43 - Réduction de 10%% appliquée. Ancien prix: 1288, Nouveau prix: 1159.2, Points fidélité: 64 pour l'ID 61
+2024-11-17 18:48:00 - Ajout d'une commande pour l'ID 7890
+2024-11-17 19:27:22 - Tri des commandes effectué par date
+2024-11-17 19:37:44 - Exportation des commandes vers PDF
+2024-11-17 19:46:53 - Tri des commandes effectué par date
+2024-11-17 19:46:59 - Affichage des statistiques des commandes
+2024-11-17 19:51:31 - Affichage des statistiques des commandes
+2024-11-17 19:54:48 - Tri des commandes effectué par date
+2024-11-17 19:54:58 - Affichage des statistiques des commandes
+2024-11-17 19:55:08 - Réduction de 10%% appliquée. Ancien prix: 244.35, Nouveau prix: 219.915, Points fidélité: 12 pour l'ID 11111
+2024-11-17 23:36:03 - Réduction de 10%% appliquée. Ancien prix: 133, Nouveau prix: 133, Points fidélité: 6 pour l'ID 1
+2024-11-18 11:07:32 - Affichage des statistiques des commandes
+2024-11-18 11:07:51 - Affichage des statistiques des commandes
+2024-11-18 11:08:12 - Affichage des statistiques des commandes
+2024-11-18 11:12:13 - Tri des commandes effectué par date
+2024-11-18 11:27:18 - Affichage des statistiques des commandes
+2024-11-18 18:43:01 - Tri des commandes effectué par date
+2024-11-18 18:51:09 - Suppression d'une commande pour l'ID 11111
+2024-11-18 20:34:59 - Affichage des statistiques des commandes
+2024-11-18 20:35:29 - Ajout d'une commande pour l'ID 44
+2024-11-18 20:35:47 - Tri des commandes effectué par date
+2024-11-18 20:37:08 - Tri des commandes effectué par date
+2024-11-18 20:52:51 - Suppression d'une commande pour l'ID 11114
+2024-11-18 20:53:55 - Ajout d'une commande pour l'ID 5
+2024-11-18 22:36:34 - Tri des commandes effectué par date
+2024-11-18 23:17:26 - Exportation des commandes vers PDF
+2024-11-18 23:17:37 - Exportation des commandes vers PDF
+2024-11-18 23:21:08 - Exportation des commandes vers PDF
+2024-11-18 23:22:03 - Exportation des commandes vers PDF
+2024-11-18 23:23:06 - Exportation des commandes vers PDF

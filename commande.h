@@ -1,11 +1,11 @@
 #ifndef COMMANDE_H
-#define COMMANDE_H
+#define COMMANDE_H//empeche fichier soit inclus plusieurs fois
 #include <QString>
 #include <QDate>
-#include <QSqlQuery>
-#include <QSqlQueryModel>
-#include <QTableView>
-#include <QStandardItemModel>
+#include <QSqlQuery>//exécuter des requêtes SQL pour interagir avec une base de données.
+#include <QSqlQueryModel>//QTableView
+#include <QTableView>// Fournit un widget pour afficher des données sous forme de tableau
+#include <QStandardItemModel>//Manipule des données sous forme de tableaux, listes.
 
 class Commande {
 private:
@@ -14,8 +14,8 @@ private:
     QString etatCommande;
     float prix;
     int pointFidelite;
-    QTableView* m_tableView;
-     QList<QString> historyList;
+    QTableView* m_tableView;//pointeur pointe sur   tableView mt3 les commandes ajoutés
+    QList<QString> historyList;// liste fih l'historique ( chaine de caractére )
 
 
 
@@ -25,7 +25,7 @@ private:
 public:
     Commande() {}  // Constructeur par défaut
     Commande(int id,  QString dateCommande, QString etatCommande, float prix, int pointFidelite);
-    Commande(QTableView* tableView);
+    Commande(QTableView* tableView);// constructeur pour initialiser le tabView
 
     // Getters
     int getId() const;
@@ -42,14 +42,14 @@ public:
     void setPointFidelite(int pointFidelite);
 
     bool ajouter();
-    QSqlQueryModel* afficher();
+    QSqlQueryModel* afficher();//retourne requette sql affiche donner sur tableView
     bool supprimer(int id  );
-    bool idExiste(int id);
+    bool idExiste(int id);// si existe ou non besh najem nml modification
    bool modifier();
     void on_tableView_hoveredRow(const QModelIndex &index);
 
-    QSqlQueryModel*trierParDate();
-    QMap<QString, int> getStatistiquesParEtat();
+   QSqlQueryModel* trierParDate();// pointeur sql puis afficher dans tableView
+    QMap<QString, int> getStatistiquesParEtat();// compter combien de commande
 
 
     void exporterPDF(const QString &nomFichier, QAbstractItemModel *model);

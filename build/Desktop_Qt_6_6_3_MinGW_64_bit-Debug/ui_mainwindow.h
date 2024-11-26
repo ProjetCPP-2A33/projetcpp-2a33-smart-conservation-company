@@ -52,6 +52,8 @@ public:
     QLineEdit *supp;
     QPushButton *statistique;
     QLineEdit *ide;
+    QLabel *label_772;
+    QPushButton *calendrier;
     QFrame *frame_205;
     QPushButton *pushButton_331;
     QFrame *frame_206;
@@ -67,6 +69,7 @@ public:
     QLineEdit *etatInput;
     QLineEdit *prixInput;
     QLineEdit *dateInput;
+    QPushButton *effacer;
     QFrame *frame_4;
     QVBoxLayout *verticalLayout_13;
     QFrame *frame_21;
@@ -134,76 +137,85 @@ public:
         frame_209->setFrameShadow(QFrame::Shadow::Raised);
         pushButton_332 = new QPushButton(frame_209);
         pushButton_332->setObjectName("pushButton_332");
-        pushButton_332->setGeometry(QRect(80, 30, 93, 28));
+        pushButton_332->setGeometry(QRect(40, 30, 93, 28));
         label_765 = new QLabel(frame_209);
         label_765->setObjectName("label_765");
-        label_765->setGeometry(QRect(20, 20, 51, 47));
+        label_765->setGeometry(QRect(0, 20, 41, 41));
         label_765->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
 ""));
         label_765->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/edit.svg")));
         pushButton_339 = new QPushButton(frame_209);
         pushButton_339->setObjectName("pushButton_339");
-        pushButton_339->setGeometry(QRect(240, 30, 93, 28));
+        pushButton_339->setGeometry(QRect(180, 30, 93, 28));
         label_766 = new QLabel(frame_209);
         label_766->setObjectName("label_766");
-        label_766->setGeometry(QRect(180, 20, 51, 47));
+        label_766->setGeometry(QRect(140, 20, 41, 41));
         label_766->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
 ""));
         label_766->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/layers.svg")));
         historique = new QPushButton(frame_209);
         historique->setObjectName("historique");
-        historique->setGeometry(QRect(400, 30, 93, 28));
+        historique->setGeometry(QRect(320, 30, 93, 28));
         label_767 = new QLabel(frame_209);
         label_767->setObjectName("label_767");
-        label_767->setGeometry(QRect(340, 20, 51, 47));
+        label_767->setGeometry(QRect(280, 20, 41, 41));
         label_767->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
 ""));
         label_767->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/fast-forward.svg")));
         label_768 = new QLabel(frame_209);
         label_768->setObjectName("label_768");
-        label_768->setGeometry(QRect(500, 20, 51, 47));
+        label_768->setGeometry(QRect(430, 20, 41, 41));
         label_768->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
 ""));
         label_768->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/trending-up.svg")));
         label_769 = new QLabel(frame_209);
         label_769->setObjectName("label_769");
-        label_769->setGeometry(QRect(820, 20, 51, 47));
+        label_769->setGeometry(QRect(880, 20, 41, 41));
         label_769->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
 ""));
         label_769->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/trash-2.svg")));
         pushButton_336 = new QPushButton(frame_209);
         pushButton_336->setObjectName("pushButton_336");
-        pushButton_336->setGeometry(QRect(880, 30, 93, 28));
+        pushButton_336->setGeometry(QRect(920, 30, 93, 28));
         label_770 = new QLabel(frame_209);
         label_770->setObjectName("label_770");
-        label_770->setGeometry(QRect(980, 20, 51, 47));
+        label_770->setGeometry(QRect(1040, 20, 41, 41));
         label_770->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
 ""));
         label_770->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/file-plus.svg")));
         pdf = new QPushButton(frame_209);
         pdf->setObjectName("pdf");
-        pdf->setGeometry(QRect(1040, 30, 93, 28));
+        pdf->setGeometry(QRect(1080, 30, 93, 28));
         label_771 = new QLabel(frame_209);
         label_771->setObjectName("label_771");
-        label_771->setGeometry(QRect(660, 20, 51, 47));
+        label_771->setGeometry(QRect(710, 20, 41, 41));
         label_771->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
 ""));
         label_771->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/corner-right-down.svg")));
         calculerReduction = new QPushButton(frame_209);
         calculerReduction->setObjectName("calculerReduction");
-        calculerReduction->setGeometry(QRect(720, 30, 93, 28));
+        calculerReduction->setGeometry(QRect(750, 30, 93, 28));
         supp = new QLineEdit(frame_209);
         supp->setObjectName("supp");
-        supp->setGeometry(QRect(870, 0, 113, 26));
+        supp->setGeometry(QRect(910, 0, 113, 26));
         statistique = new QPushButton(frame_209);
         statistique->setObjectName("statistique");
-        statistique->setGeometry(QRect(560, 30, 93, 28));
+        statistique->setGeometry(QRect(610, 30, 93, 28));
         ide = new QLineEdit(frame_209);
         ide->setObjectName("ide");
-        ide->setGeometry(QRect(710, 0, 113, 26));
+        ide->setGeometry(QRect(740, 0, 113, 26));
+        label_772 = new QLabel(frame_209);
+        label_772->setObjectName("label_772");
+        label_772->setGeometry(QRect(570, 20, 41, 41));
+        label_772->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
+""));
+        label_772->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/trending-up.svg")));
+        calendrier = new QPushButton(frame_209);
+        calendrier->setObjectName("calendrier");
+        calendrier->setGeometry(QRect(470, 30, 93, 29));
         frame_205 = new QFrame(tab_21);
         frame_205->setObjectName("frame_205");
-        frame_205->setGeometry(QRect(200, 0, 341, 541));
+        frame_205->setGeometry(QRect(200, 0, 321, 541));
         frame_205->setStyleSheet(QString::fromUtf8("background-color: #edf7e6;         /* Light green inside background */\n"
 "border: 2px solid rgb(68, 150, 109); /* Green border */\n"
 "border-radius: 15px;                /* Rounded corners with 15px radius */\n"
@@ -237,7 +249,7 @@ public:
         pushButton_331->setCheckable(true);
         frame_206 = new QFrame(frame_205);
         frame_206->setObjectName("frame_206");
-        frame_206->setGeometry(QRect(10, 80, 151, 431));
+        frame_206->setGeometry(QRect(10, 80, 141, 431));
         frame_206->setStyleSheet(QString::fromUtf8("background-color: #edf7e6;         /* Light green inside background */\n"
 "border: 2px solid rgb(68, 150, 109); /* Green border */\n"
 "border-radius: 15px;                /* Rounded corners with 15px radius */\n"
@@ -248,38 +260,123 @@ public:
         verticalLayout_47->setObjectName("verticalLayout_47");
         label_759 = new QLabel(frame_206);
         label_759->setObjectName("label_759");
-        label_759->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);"));
+        label_759->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    background-color: rgb(28, 168, 79); /* Couleur de fond */\n"
+"    border: 2px solid #1C8A4F; /* Bordure assortie */\n"
+"    border-radius: 5px; /* Coins arrondis */\n"
+"    color: white; /* Texte en blanc */\n"
+"    font-size: 14px; /* Taille de police */\n"
+"    padding: 5px; /* Espacement interne */\n"
+"    font-weight: bold; /* Texte en gras */\n"
+"}\n"
+"\n"
+"QLabel:hover {\n"
+"    background-color: rgb(20, 140, 60); /* Couleur de fond change lorsque l'on survole le label */\n"
+"}\n"
+"\n"
+"QLabel:focus {\n"
+"    border: 2px solid #0D6E3F; /* Bordure qui change en cas de focus (utile pour les QLabel avec interaction) */\n"
+"}\n"
+""));
 
         verticalLayout_47->addWidget(label_759);
 
         label_760 = new QLabel(frame_206);
         label_760->setObjectName("label_760");
-        label_760->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
+        label_760->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    background-color: rgb(28, 168, 79); /* Couleur de fond */\n"
+"    border: 2px solid #1C8A4F; /* Bordure assortie */\n"
+"    border-radius: 5px; /* Coins arrondis */\n"
+"    color: white; /* Texte en blanc */\n"
+"    font-size: 14px; /* Taille de police */\n"
+"    padding: 5px; /* Espacement interne */\n"
+"    font-weight: bold; /* Texte en gras */\n"
+"}\n"
+"\n"
+"QLabel:hover {\n"
+"    background-color: rgb(20, 140, 60); /* Couleur de fond change lorsque l'on survole le label */\n"
+"}\n"
+"\n"
+"QLabel:focus {\n"
+"    border: 2px solid #0D6E3F; /* Bordure qui change en cas de focus (utile pour les QLabel avec interaction) */\n"
+"}\n"
+"\n"
 ""));
 
         verticalLayout_47->addWidget(label_760);
 
         label_761 = new QLabel(frame_206);
         label_761->setObjectName("label_761");
-        label_761->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);"));
+        label_761->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    background-color: rgb(28, 168, 79); /* Couleur de fond */\n"
+"    border: 2px solid #1C8A4F; /* Bordure assortie */\n"
+"    border-radius: 5px; /* Coins arrondis */\n"
+"    color: white; /* Texte en blanc */\n"
+"    font-size: 14px; /* Taille de police */\n"
+"    padding: 5px; /* Espacement interne */\n"
+"    font-weight: bold; /* Texte en gras */\n"
+"}\n"
+"\n"
+"QLabel:hover {\n"
+"    background-color: rgb(20, 140, 60); /* Couleur de fond change lorsque l'on survole le label */\n"
+"}\n"
+"\n"
+"QLabel:focus {\n"
+"    border: 2px solid #0D6E3F; /* Bordure qui change en cas de focus (utile pour les QLabel avec interaction) */\n"
+"}\n"
+""));
 
         verticalLayout_47->addWidget(label_761);
 
         label_762 = new QLabel(frame_206);
         label_762->setObjectName("label_762");
-        label_762->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);"));
+        label_762->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    background-color: rgb(28, 168, 79); /* Couleur de fond */\n"
+"    border: 2px solid #1C8A4F; /* Bordure assortie */\n"
+"    border-radius: 5px; /* Coins arrondis */\n"
+"    color: white; /* Texte en blanc */\n"
+"    font-size: 14px; /* Taille de police */\n"
+"    padding: 5px; /* Espacement interne */\n"
+"    font-weight: bold; /* Texte en gras */\n"
+"}\n"
+"\n"
+"QLabel:hover {\n"
+"    background-color: rgb(20, 140, 60); /* Couleur de fond change lorsque l'on survole le label */\n"
+"}\n"
+"\n"
+"QLabel:focus {\n"
+"    border: 2px solid #0D6E3F; /* Bordure qui change en cas de focus (utile pour les QLabel avec interaction) */\n"
+"}\n"
+""));
 
         verticalLayout_47->addWidget(label_762);
 
         label_763 = new QLabel(frame_206);
         label_763->setObjectName("label_763");
-        label_763->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);"));
+        label_763->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    background-color: rgb(28, 168, 79); /* Couleur de fond */\n"
+"    border: 2px solid #1C8A4F; /* Bordure assortie */\n"
+"    border-radius: 5px; /* Coins arrondis */\n"
+"    color: white; /* Texte en blanc */\n"
+"    font-size: 14px; /* Taille de police */\n"
+"    padding: 5px; /* Espacement interne */\n"
+"    font-weight: bold; /* Texte en gras */\n"
+"}\n"
+"\n"
+"QLabel:hover {\n"
+"    background-color: rgb(20, 140, 60); /* Couleur de fond change lorsque l'on survole le label */\n"
+"}\n"
+"\n"
+"QLabel:focus {\n"
+"    border: 2px solid #0D6E3F; /* Bordure qui change en cas de focus (utile pour les QLabel avec interaction) */\n"
+"}\n"
+""));
 
         verticalLayout_47->addWidget(label_763);
 
         frame_207 = new QFrame(frame_205);
         frame_207->setObjectName("frame_207");
-        frame_207->setGeometry(QRect(170, 80, 161, 431));
+        frame_207->setGeometry(QRect(150, 80, 161, 461));
         frame_207->setStyleSheet(QString::fromUtf8("background-color: #edf7e6;         /* Light green inside background */\n"
 "border: 2px solid rgb(68, 150, 109); /* Green border */\n"
 "border-radius: 15px;                /* Rounded corners with 15px radius */\n"
@@ -320,10 +417,29 @@ public:
 ""));
         dateInput = new QLineEdit(frame_207);
         dateInput->setObjectName("dateInput");
-        dateInput->setGeometry(QRect(0, 120, 151, 41));
+        dateInput->setGeometry(QRect(10, 120, 141, 41));
         dateInput->setStyleSheet(QString::fromUtf8("background-color: #edf7e6;         /* Light green inside background */\n"
 "border: 2px solid rgb(68, 150, 109); /* Green border */\n"
 "border-radius: 15px;                /* Rounded corners with 15px radius */"));
+        effacer = new QPushButton(frame_207);
+        effacer->setObjectName("effacer");
+        effacer->setGeometry(QRect(30, 420, 93, 29));
+        effacer->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(50, 120, 90); /* Darker green */\n"
+"    color: black;\n"
+"    \n"
+"    font-size: 20px;\n"
+"    text-decoration: underline;  /* Underlined text */\n"
+"    line-height: 1.5;\n"
+"\n"
+"    width: 200px;\n"
+"    height: 40px;\n"
+"    opacity: 0.65;\n"
+"    text-align: center;\n"
+"    \n"
+"    border-style: solid;\n"
+"}\n"
+""));
         frame_4 = new QFrame(tab_21);
         frame_4->setObjectName("frame_4");
         frame_4->setGeometry(QRect(0, 0, 201, 631));
@@ -455,7 +571,7 @@ public:
 
         frame_6 = new QFrame(tab_21);
         frame_6->setObjectName("frame_6");
-        frame_6->setGeometry(QRect(540, 0, 841, 541));
+        frame_6->setGeometry(QRect(520, 0, 861, 541));
         frame_6->setStyleSheet(QString::fromUtf8("background-color: #edf7e6;         /* Light green inside background */\n"
 "border: 2px solid rgb(68, 150, 109); /* Green border */\n"
 "border-radius: 15px;                /* Rounded corners with 15px radius */\n"
@@ -496,7 +612,7 @@ public:
         label_19->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/user.svg")));
         tableView = new QTableView(frame_19);
         tableView->setObjectName("tableView");
-        tableView->setGeometry(QRect(100, 110, 541, 381));
+        tableView->setGeometry(QRect(20, 120, 521, 381));
         tableView->setStyleSheet(QString::fromUtf8("QTableView {\n"
 "    background-color: rgb(200, 255, 200); /* Fond plus clair */\n"
 "    border: 2px solid #1C8A4F;\n"
@@ -604,7 +720,7 @@ public:
         label_990->setScaledContents(true);
         verticalLayoutWidget_2 = new QWidget(tab_22);
         verticalLayoutWidget_2->setObjectName("verticalLayoutWidget_2");
-        verticalLayoutWidget_2->setGeometry(QRect(40, 10, 1331, 651));
+        verticalLayoutWidget_2->setGeometry(QRect(30, 10, 1341, 651));
         verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget_2);
         verticalLayout_2->setObjectName("verticalLayout_2");
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
@@ -650,6 +766,8 @@ public:
         calculerReduction->setText(QCoreApplication::translate("MainWindow", "R\303\251duction", nullptr));
         supp->setText(QString());
         statistique->setText(QCoreApplication::translate("MainWindow", "Statistiques", nullptr));
+        label_772->setText(QString());
+        calendrier->setText(QCoreApplication::translate("MainWindow", "calendrier", nullptr));
         pushButton_331->setText(QCoreApplication::translate("MainWindow", " Ajouter une commande", nullptr));
         label_759->setText(QCoreApplication::translate("MainWindow", "id", nullptr));
         label_760->setText(QCoreApplication::translate("MainWindow", "dateCommande", nullptr));
@@ -660,6 +778,7 @@ public:
         fideliteInput->setText(QString());
         etatInput->setText(QString());
         prixInput->setText(QString());
+        effacer->setText(QCoreApplication::translate("MainWindow", "Effacer", nullptr));
         pushButton_7->setText(QCoreApplication::translate("MainWindow", "Home", nullptr));
         pushButton_8->setText(QCoreApplication::translate("MainWindow", "Gestion Employ\303\251s", nullptr));
         pushButton_14->setText(QCoreApplication::translate("MainWindow", "Gestion des cliens", nullptr));
@@ -677,7 +796,7 @@ public:
         label_764->setText(QString());
         label_20->setText(QString());
         label_21->setText(QString());
-        rechercher->setText(QCoreApplication::translate("MainWindow", "recherche ", nullptr));
+        rechercher->setText(QCoreApplication::translate("MainWindow", "Recherche ", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_21), QCoreApplication::translate("MainWindow", "Tab 1", nullptr));
         label_989->setText(QString());
         label_990->setText(QString());

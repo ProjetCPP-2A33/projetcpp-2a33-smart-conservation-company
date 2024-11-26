@@ -23,9 +23,9 @@ Commande::Commande(int id, QString dateCommande, QString etatCommande, float pri
 }
 
 QSqlQueryModel* Commande::afficher() {
-    QSqlQueryModel* model = new QSqlQueryModel();
-    model->setQuery("SELECT * FROM commandes");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+    QSqlQueryModel* model = new QSqlQueryModel();// pointeur model pour acceder a tableView
+    model->setQuery("SELECT * FROM commandes");// remplir requette sql
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));// definir titre d'une colone dans tableView
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("dateCommande"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("etatCommande"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("prix"));
@@ -63,7 +63,7 @@ bool Commande::ajouter() {
         return false;
     }
 
-    QSqlQuery query;
+    QSqlQuery query;// execution des requettes dans bases de données
     query.prepare("INSERT INTO commandes (id, dateCommande, etatCommande, prix, pointFidelite) "
                   "VALUES (:id, :dateCommande, :etatCommande, :prix, :pointFidelite)");
 
@@ -81,7 +81,7 @@ bool Commande::ajouter() {
     qDebug() << "Commande ajoutée avec succès.";
 
 
-addToHistory("Ajout d'une commande", id);
+//addToHistory("Ajout d'une commande", id);
 
     return true;
 }
@@ -96,7 +96,7 @@ bool Commande::idExiste(int id) {
     query.prepare("SELECT COUNT(*) FROM commandes WHERE id = :id");
     query.bindValue(":id", id);
 
-    if (!query.exec()) {
+    if (!query.exec()) {// EXECUTE COMMANDE
         qDebug() << "Erreur lors de la vérification de l'ID : " << query.lastError().text();
         return false;
     }
@@ -167,7 +167,7 @@ bool Commande::modifier() {
     }
 
     qDebug() << "Commande modifiée avec succès.";
-    addToHistory("Modification d'une commande", id);
+    //addToHistory("Modification d'une commande", id);
 
     return true;
 }
@@ -175,11 +175,10 @@ bool Commande::modifier() {
 
 
 bool Commande::supprimer(int id) {
-    QSqlQuery query;
-
+    QSqlQuery query;// preparer excution des requettes  sql
     // Vérifier si l'ID existe dans la base de données
-    query.prepare("SELECT COUNT(*) FROM commandes WHERE id = :id");
-    query.bindValue(":id", id);
+    query.prepare("SELECT COUNT(*) FROM commandes WHERE id = :id");// nbre commande 3andehom id
+    query.bindValue(":id", id);//valeur reél
 
     if (!query.exec()) {
         qDebug() << "Erreur lors de la vérification de l'existence de l'ID:" << query.lastError().text();
@@ -208,43 +207,53 @@ bool Commande::supprimer(int id) {
 
     // Si la requête réussit, afficher un message de succès
     qDebug() << "Suppression réussie pour l'ID:" << id;
-    addToHistory("Suppression d'une commande", id);
+   // addToHistory("Suppression d'une commande", id);
     return true;
 }
+
+//QSqlQueryModel();// excution requette sql et afficher resultat sur tableView
 QSqlQueryModel* Commande::trierParDate() {
-    QSqlQueryModel* model = new QSqlQueryModel();
-    QString queryStr = "SELECT * FROM commandes ORDER BY dateCommande ASC";
+    QSqlQueryModel* model = new QSqlQueryModel();// excution requette sql et afficher resultat sur tableView
 
-    // Requête pour trier par dateCommande en convertissant le format en date
+    // Requête SQL modifiée pour Oracle
+    QString queryStr = "SELECT * FROM commandes "
+                       "WHERE TO_DATE(dateCommande, 'DD/MM/YYYY') IS NOT NULL "
+                       "ORDER BY TO_DATE(dateCommande, 'DD/MM/YYYY') ASC";
 
-    qDebug() << "Exécution de la requête : " << queryStr;
+    qDebug() << "Exécution de la requête : " << queryStr;// affichage requette pour le debogage verifie shnuw excetué o shnuw le
 
-    model->setQuery(queryStr);
+    model->setQuery(queryStr);// exution sql et stockage(pour model dima stocker et recuperer) donné
 
-    // Vérifiez si la requête s'est exécutée correctement
+    // Vérification si la requête s'est exécutée correctement
     if (model->lastError().isValid()) {
-        qDebug() << "Erreur lors de l'exécution de la requête de tri par date : " << model->lastError().databaseText();
+        qDebug() << "Erreur lors de l'exécution de la requête : " << model->lastError().databaseText();
         qDebug() << "Détail de l'erreur : " << model->lastError().driverText();
 
         delete model;
         return nullptr;
     }
-
-
-
+    //addToHistory("Tri des commandes effectué par date", 0);
 
     return model;
 }
 
 
-void Commande::exporterPDF(const QString &nomFichier, QAbstractItemModel *model)
+
+
+
+
+
+
+
+
+void Commande::exporterPDF(const QString &nomFichier, QAbstractItemModel *model)// esm fich et model fih donne tab comm
 {
-    QPdfWriter pdfWriter(nomFichier);
-    QPainter painter(&pdfWriter);
+    QPdfWriter pdfWriter(nomFichier);// fich win besh nhot contenu
+    QPainter painter(&pdfWriter);// text forme sur pdf
 
     // Paramètres PDF
-    painter.setPen(Qt::black);
-    painter.setFont(QFont("Arial", 20));
+    painter.setPen(Qt::black);// couleur
+    painter.setFont(QFont("Arial", 20));//police
 
     // Titre
     painter.drawText(2500, 1100, "Liste des Commandes");
@@ -252,29 +261,30 @@ void Commande::exporterPDF(const QString &nomFichier, QAbstractItemModel *model)
     // Coordonnées et dimensions des cellules
     int startX = 200;
     int startY = 1800;
-    int cellWidth = 1100;
-    int cellHeight = 450;
+    int cellWidth = 1800;
+    int cellHeight = 600;
+
 
     // En-têtes du tableau
-    QStringList headers = {"id ", "datec", "etatc", "prix", "pointfid"};
-    painter.setFont(QFont("Arial", 10, QFont::Bold));
-    for (int col = 0; col < headers.size(); ++col) {
-        painter.drawText(startX + col * cellWidth, startY, cellWidth, cellHeight, Qt::AlignCenter, headers[col]);
+    QStringList headers = {"id ", "datec", "etatc", "prix", "pointfid"};// nom colonne
+    painter.setFont(QFont("Arial", 10, QFont::Bold));// besh tektebhom id .. en gras
+    for (int col = 0; col < headers.size(); ++col) {// parcout chaque colonne
+        painter.drawText(startX + col * cellWidth, startY, cellWidth, cellHeight, Qt::AlignCenter, headers[col]);// win bedhabet besh tektebhom
     }
 
     // Données des commandes
-    int rowCount = model->rowCount();
-    painter.setFont(QFont("Arial", 10));
+    int rowCount = model->rowCount();// nbre ligne
+    painter.setFont(QFont("Arial", 10));// police de ligne cordonné
     for (int row = 0; row < rowCount; ++row) {
-        QColor bgColor = (row % 2 == 0) ? Qt::lightGray : Qt::white;
+        QColor bgColor = (row % 2 == 0) ? Qt::green : Qt::white;// parcout setar abyedh o lekhyr akhedhyr
 
-        for (int col = 0; col < headers.size(); ++col) {
-            QString data = model->data(model->index(row, col)).toString();
-            QRect cellRect(startX + col * cellWidth, startY + (row + 1) * cellHeight, cellWidth, cellHeight);
+        for (int col = 0; col < headers.size(); ++col) {// chaque cologne mt3 lignz
+            QString data = model->data(model->index(row, col)).toString();// acceder yehezeha  puis convertir de forme  text
+            QRect cellRect(startX + col * cellWidth, startY + (row + 1) * cellHeight, cellWidth, cellHeight);// position taille
 
-            painter.fillRect(cellRect, bgColor);
-            painter.drawText(cellRect, Qt::AlignCenter, data);
-            painter.drawRect(cellRect);
+            painter.fillRect(cellRect, bgColor);// arriere plan
+            painter.drawText(cellRect, Qt::AlignCenter, data);// text f centre cellule
+            painter.drawRect(cellRect);//contour de cellule
         }
     }
 
@@ -283,65 +293,51 @@ void Commande::exporterPDF(const QString &nomFichier, QAbstractItemModel *model)
 
 QMap<QString, int> Commande::getStatistiquesParEtat() {
     QMap<QString, int> statistiques;
-    QSqlQuery query;
+    QSqlQuery query;//préparer et exécuter des requêtes SQL
     query.prepare("SELECT etatCommande, COUNT(*) FROM commandes GROUP BY etatCommande");
 
-    if (query.exec()) {
-        while (query.next()) {
+    if (query.exec()) {// execution nejhet nodekhel lel bloc
+        while (query.next()) {// 2eme ligne
             QString etat = query.value(0).toString();
-            int count = query.value(1).toInt();
+            int count = query.value(1).toInt();//recupere ihawelha string
             statistiques.insert(etat, count);
         }
     } else {
         qDebug() << "Erreur lors de l'exécution de la requête:" << query.lastError().text();
     }
 
-    return statistiques;
+    return statistiques;// retourne Qmap
 }
-// commande.cpp
 
 
-float Commande::getPrix() const {
+
+float Commande::getPrix() const {// pour reduction necessair
     return this->prix;
 }
 
-/*bool Commande::calculerReductionAvecUpdate(int id) {
-    QSqlQuery query;
 
-    // Récupérer les détails de la commande par ID
-    query.prepare("SELECT prix, pointFidelite FROM commandes WHERE id = :id");
-    query.bindValue(":id", id);
 
-    if (query.exec() && query.next()) {
-        float prix = query.value(0).toFloat();
-        int pointsFidelite = static_cast<int>(prix / 20); // Calcul des points fidélité
 
-        // Calcul du prix après réduction si nécessaire
-        float prixApresReduction = prix;
-        if (pointsFidelite >= 10) {
-            prixApresReduction = prix * 0.9; // Appliquer 10% de réduction
-        }
-
-        // Mettre à jour les valeurs dans la base de données
-        QSqlQuery updateQuery;
-        updateQuery.prepare("UPDATE commandes SET pointFidelite = :pointsFidelite, prix = :prixApresReduction WHERE id = :id");
-        updateQuery.bindValue(":pointsFidelite", pointsFidelite);
-        updateQuery.bindValue(":prixApresReduction", prixApresReduction);
-        updateQuery.bindValue(":id", id);
-
-        return updateQuery.exec(); // Retourne true si la mise à jour a réussi
-    }
-}*/
 bool Commande::calculerReductionAvecUpdate(int id) {
-    QSqlQuery query;
+    if (id <= 0) {
+        QMessageBox::warning(nullptr, "Erreur", "Veuillez entrer un ID valide !");
+        return false;
+    }
+
+    if (!idExiste(id)) {
+        QMessageBox::warning(nullptr, "Erreur", "L'ID de la commande n'existe pas !");
+        return false;
+    }
+
+    QSqlQuery query;//préparer et exécuter des requêtes SQL
 
     // Récupérer les détails de la commande par ID
     query.prepare("SELECT prix, pointFidelite FROM commandes WHERE id = :id");
-    query.bindValue(":id", id);
+    query.bindValue(":id", id);// torbet id bel requette sql
 
     if (query.exec() && query.next()) {
         float prix = query.value(0).toFloat();
-        int pointsFidelite = static_cast<int>(prix / 20); // Calcul des points fidélité
+        int pointsFidelite = static_cast<int>(prix / 20); // Calcul des points fidélité 1pt sur 20
 
         // Calcul du prix après réduction si nécessaire
         float prixApresReduction = prix;
@@ -350,24 +346,26 @@ bool Commande::calculerReductionAvecUpdate(int id) {
         }
 
         // Mettre à jour les valeurs dans la base de données
-        QSqlQuery updateQuery;
+        QSqlQuery updateQuery;//nouv requette pour update
         updateQuery.prepare("UPDATE commandes SET pointFidelite = :pointsFidelite, prix = :prixApresReduction WHERE id = :id");
         updateQuery.bindValue(":pointsFidelite", pointsFidelite);
         updateQuery.bindValue(":prixApresReduction", prixApresReduction);
-        updateQuery.bindValue(":id", id);
+        updateQuery.bindValue(":id", id);//yorbet les nouvelle val bel requette
 
         if (updateQuery.exec()) {
             // Ajouter l'action à l'historique après la mise à jour réussie
             QString action = QString("Réduction de 10%% appliquée. Ancien prix: %1, Nouveau prix: %2, Points fidélité: %3")
                                  .arg(prix)
                                  .arg(prixApresReduction)
-                                 .arg(pointsFidelite);
-            addToHistory(action, id); // Enregistrer l'action dans l'historique
+                                 .arg(pointsFidelite);//nouv description pour attributs
+            //addToHistory(action, id); // Enregistrer l'action dans l'historique
 
             return true; // Retourne true si la mise à jour et l'ajout à l'historique ont réussi
         }
+    } else {
+        QMessageBox::warning(nullptr, "Erreur", "Impossible de récupérer les détails de la commande !");
     }
-    return false; // Retourne false si la mise à jour échoue
+    return false; // Retourne false si la mise à jour échoue ou si l'ID n'est pas trouvé
 }
 
 
@@ -379,7 +377,15 @@ bool Commande::calculerReductionAvecUpdate(int id) {
 
 
 
-void Commande::writeHistoryToFile(const QString &fileName) {
+
+
+
+
+
+
+
+
+/*void Commande::writeHistoryToFile(const QString &fileName) {
     QFile file(fileName);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qDebug() << "Erreur lors de l'ouverture du fichier d'historique.";
@@ -427,23 +433,23 @@ void Commande::addToHistory(const QString &action, int idCommande) {
 
 
 void Commande::afficherHistorique() {
-    // Chemin du fichier d'historique
+
     QString filePath = "C:/Users/MSI/Documents/crud/historique.txt";
 
-    // Ouvrir le fichier en lecture seule
+
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox::warning(nullptr, "Erreur", "Impossible d'ouvrir le fichier d'historique.");
         return;
     }
 
-    // Lire tout le contenu du fichier
+
     QTextStream in(&file);
     QString historique = in.readAll();
 
-    // Fermer le fichier
+
     file.close();
 
     // Afficher le contenu dans une boîte de dialogue
     QMessageBox::information(nullptr, "Historique", historique.isEmpty() ? "Aucun historique disponible." : historique);
-}
+}*/

@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "commande.h"
+#include "qcalendarwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {class MainWindow;
@@ -20,22 +21,31 @@ private slots:
     void on_pushButton_331_clicked();  // Ajouter une commande
     void on_pushButton_336_clicked();
     void on_pushButton_332_clicked();    // Supprimer une commande
-    void onTableViewClicked(const QModelIndex &index) ;
+    void onTableViewClicked(const QModelIndex &index);
     void setupConnections();
     void on_pushButton_339_clicked();
     void on_pdf_clicked();
     void on_statistique_clicked();
     void on_rechercher_clicked();
     void on_calculerReduction_clicked();
-    void on_historique_clicked();
-
+   // void on_historique_clicked();
+    void on_effacer_clicked();
+    void on_calendrier_clicked() ;
+    void afficherCalendrier();
+    void mettreEnEvidenceDates(QCalendarWidget *calendrier);
+    //void afficherCommandesParDate(const QDate &date);
+    //void afficherToutesLesCommandes();
+   // void restaurerEtatTableView();
+   // void sauvegarderEtatTableView();
 
 
 
 
 private:
-    Ui::MainWindow *ui;
-    Commande Ctemp;
+    Ui::MainWindow *ui;// pointeur sur interface
+    Commande Ctemp;// instance de commande
+    QSqlQueryModel m_previousModel;
+     QString m_previousQuery;
 
 
 

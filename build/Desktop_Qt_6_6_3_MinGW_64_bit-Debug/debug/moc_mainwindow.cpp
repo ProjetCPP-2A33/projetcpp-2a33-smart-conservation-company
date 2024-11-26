@@ -52,11 +52,16 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "on_statistique_clicked",
     "on_rechercher_clicked",
     "on_calculerReduction_clicked",
-    "on_historique_clicked"
+    "on_effacer_clicked",
+    "on_calendrier_clicked",
+    "afficherCalendrier",
+    "mettreEnEvidenceDates",
+    "QCalendarWidget*",
+    "calendrier"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[30];
+    uint offsetsAndSizes[40];
     char stringdata0[11];
     char stringdata1[26];
     char stringdata2[1];
@@ -71,7 +76,12 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata11[23];
     char stringdata12[22];
     char stringdata13[29];
-    char stringdata14[22];
+    char stringdata14[19];
+    char stringdata15[22];
+    char stringdata16[19];
+    char stringdata17[22];
+    char stringdata18[17];
+    char stringdata19[11];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -91,7 +101,12 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(185, 22),  // "on_statistique_clicked"
         QT_MOC_LITERAL(208, 21),  // "on_rechercher_clicked"
         QT_MOC_LITERAL(230, 28),  // "on_calculerReduction_clicked"
-        QT_MOC_LITERAL(259, 21)   // "on_historique_clicked"
+        QT_MOC_LITERAL(259, 18),  // "on_effacer_clicked"
+        QT_MOC_LITERAL(278, 21),  // "on_calendrier_clicked"
+        QT_MOC_LITERAL(300, 18),  // "afficherCalendrier"
+        QT_MOC_LITERAL(319, 21),  // "mettreEnEvidenceDates"
+        QT_MOC_LITERAL(341, 16),  // "QCalendarWidget*"
+        QT_MOC_LITERAL(358, 10)   // "calendrier"
     },
     "MainWindow",
     "on_pushButton_331_clicked",
@@ -107,7 +122,12 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "on_statistique_clicked",
     "on_rechercher_clicked",
     "on_calculerReduction_clicked",
-    "on_historique_clicked"
+    "on_effacer_clicked",
+    "on_calendrier_clicked",
+    "afficherCalendrier",
+    "mettreEnEvidenceDates",
+    "QCalendarWidget*",
+    "calendrier"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -119,7 +139,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -127,17 +147,20 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   80,    2, 0x08,    1 /* Private */,
-       3,    0,   81,    2, 0x08,    2 /* Private */,
-       4,    0,   82,    2, 0x08,    3 /* Private */,
-       5,    1,   83,    2, 0x08,    4 /* Private */,
-       8,    0,   86,    2, 0x08,    6 /* Private */,
-       9,    0,   87,    2, 0x08,    7 /* Private */,
-      10,    0,   88,    2, 0x08,    8 /* Private */,
-      11,    0,   89,    2, 0x08,    9 /* Private */,
-      12,    0,   90,    2, 0x08,   10 /* Private */,
-      13,    0,   91,    2, 0x08,   11 /* Private */,
-      14,    0,   92,    2, 0x08,   12 /* Private */,
+       1,    0,   98,    2, 0x08,    1 /* Private */,
+       3,    0,   99,    2, 0x08,    2 /* Private */,
+       4,    0,  100,    2, 0x08,    3 /* Private */,
+       5,    1,  101,    2, 0x08,    4 /* Private */,
+       8,    0,  104,    2, 0x08,    6 /* Private */,
+       9,    0,  105,    2, 0x08,    7 /* Private */,
+      10,    0,  106,    2, 0x08,    8 /* Private */,
+      11,    0,  107,    2, 0x08,    9 /* Private */,
+      12,    0,  108,    2, 0x08,   10 /* Private */,
+      13,    0,  109,    2, 0x08,   11 /* Private */,
+      14,    0,  110,    2, 0x08,   12 /* Private */,
+      15,    0,  111,    2, 0x08,   13 /* Private */,
+      16,    0,  112,    2, 0x08,   14 /* Private */,
+      17,    1,  113,    2, 0x08,   15 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -151,6 +174,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 18,   19,
 
        0        // eod
 };
@@ -185,8 +211,15 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_calculerReduction_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_historique_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        // method 'on_effacer_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_calendrier_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'afficherCalendrier'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'mettreEnEvidenceDates'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QCalendarWidget *, std::false_type>
     >,
     nullptr
 } };
@@ -207,8 +240,22 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 7: _t->on_statistique_clicked(); break;
         case 8: _t->on_rechercher_clicked(); break;
         case 9: _t->on_calculerReduction_clicked(); break;
-        case 10: _t->on_historique_clicked(); break;
+        case 10: _t->on_effacer_clicked(); break;
+        case 11: _t->on_calendrier_clicked(); break;
+        case 12: _t->afficherCalendrier(); break;
+        case 13: _t->mettreEnEvidenceDates((*reinterpret_cast< std::add_pointer_t<QCalendarWidget*>>(_a[1]))); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 13:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QCalendarWidget* >(); break;
+            }
+            break;
         }
     }
 }
@@ -232,13 +279,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 14;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        if (_id < 14)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 14;
     }
     return _id;
 }
