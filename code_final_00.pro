@@ -1,6 +1,8 @@
 QT       += core gui
 QT += core gui sql network
 QT += charts
+QT += widgets
+QT += core serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17

@@ -3,8 +3,10 @@
 
 const QList<User> User::userList = {
     User("admin", "admin123"),
-    User("user1", "password1"),
-    User("user2", "password2")
+    User("client", "client123"),
+    User("produit", "produit123"),
+    User("commande", "commande123"),
+    User("equipement", "equipement123"),
 };
 
 User::User() {}

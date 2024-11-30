@@ -1,4 +1,4 @@
-#include "gestionemp.h"
+/*#include "gestionemp.h"
 #include "ui_gestionemp.h"
 #include "user.h"
 #include <QMessageBox>
@@ -35,13 +35,126 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Connect the backup button signal to the slot
     connect(ui->buttonBackup, &QPushButton::clicked, this, &MainWindow::on_buttonBackup_clicked);
+    connect(ui->pushButton_suivant, &QPushButton::clicked, this, &MainWindow::on_pushButton_suivant_clicked);
+    ui->tabWidget->setTabEnabled(2, false);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+void MainWindow::on_pushButton_suivant_clicked() {
+    // Enable and switch to Tab 3
+    ui->tabWidget->setTabEnabled(2, true);
+    ui->tabWidget->setCurrentIndex(2);
+*/
+#include "gestionemp.h"
+#include "ui_gestionemp.h"
+#include "user.h"
+#include <QMessageBox>
+#include <QDebug>
+#include "employee.h"
+#include "connection.h"
+#include <QFileDialog>
+#include <QFile>
+#include <QTextStream>
+#include <QtCharts/QChartView>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
+#include <QRegularExpression>
+#include <QRegularExpressionValidator>
+#include <QDialog>
+#include <QVBoxLayout>
+#include <QDesktopServices>
+#include <QUrl>
+#include "arduino.h"
+#include <QSerialPortInfo>
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    ui->setupUi(this);
+    ui->stackedWidget->setVisible(false);
+    arduino = new Arduino(this);
+    if (!arduino->connectToArduino()) {
+        QMessageBox::critical(this, tr("Erreur de connexion"), tr("Impossible de se connecter à l'Arduino."));
+    }
 
+    connect(arduino, &Arduino::dataReceived, this, &MainWindow::handleArduinoData);
+
+    // Set Tab 1 (Login) as the current tab
+    ui->tabWidget->setCurrentIndex(0);
+
+    // Disable Tab 2 and Tab 3 initially
+    ui->tabWidget->setTabEnabled(1, false);
+    ui->tabWidget->setTabEnabled(2, false);
+
+    // Connect the welcome button signal to the slot
+    connect(ui->buttonWelcome, &QPushButton::clicked, this, &MainWindow::on_buttonWelcome_clicked);
+
+    // Connect the backup button signal to the slot
+    connect(ui->buttonBackup, &QPushButton::clicked, this, &MainWindow::on_buttonBackup_clicked);
+
+    // Connect 'pushButton_suivant' to the slot 'on_pushButton_suivant_clicked'
+    connect(ui->pushButton_suivant, &QPushButton::clicked, this, &MainWindow::on_pushButton_suivant_clicked);
+
+    // Connect verify button to the slot
+    connect(ui->verifyButton, &QPushButton::clicked, this, &MainWindow::on_verifyButton_clicked);
+    // Connect 'forgot your password2' button to the slot 'on_buttonForgotPassword2_clicked'
+    connect(ui->yourPasswordButton, &QPushButton::clicked, this, &MainWindow::on_buttonForgotPassword2_clicked);
+    // Connect 'fermer' button to the slot 'on_buttonFermer_clicked'
+    connect(ui->pushButton_fermer, &QPushButton::clicked, this, &MainWindow::on_pushButton_fermer_clicked);
+    connect(ui->yourPasswordButton, &QPushButton::clicked, this, &MainWindow::on_yourPasswordButton_clicked);
+
+}
+void MainWindow::on_buttonForgotPassword2_clicked() {
+    // Afficher le QStackedWidget
+    ui->stackedWidget->setVisible(true);
+}
+
+void MainWindow::on_pushButton_fermer_clicked() {
+    // Cacher le QStackedWidget
+    ui->stackedWidget->setVisible(false);
+}
+
+
+void MainWindow::on_pushButton_suivant_clicked() {
+    // Enable and switch to Tab 3
+    ui->tabWidget->setTabEnabled(2, true);
+    ui->tabWidget->setCurrentIndex(2);
+
+
+}
+
+void MainWindow::handleArduinoData(QString data)
+{
+    ui->lineEditID->setText(data); // Afficher l'ID reçu dans le QLineEdit
+}
+
+void MainWindow::on_verifyButton_clicked()
+{
+    QString id = ui->lineEditID->text();
+
+    // Requête pour vérifier si l'ID existe dans la base de données
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM COMMANDES WHERE IDCOMMANDES = :id");
+    query.bindValue(":id", id);
+    if (query.exec() && query.next()) {
+        int count = query.value(0).toInt();
+        if (count > 0) {
+            QMessageBox::information(this, tr("Vérification ID"), tr("L'ID existe."));
+        } else {
+            QMessageBox::information(this, tr("Vérification ID"), tr("L'ID n'existe pas."));
+        }
+    } else {
+        QMessageBox::critical(this, tr("Erreur de requête"), tr("Erreur lors de l'exécution de la requête."));
+    }
+}
+MainWindow::~MainWindow()
+{
+    arduino->disconnectFromArduino();
+    delete ui;
+}
 void MainWindow::on_buttonWelcome_clicked()
 {
     QString username = ui->lineEditUsername->text();
@@ -75,17 +188,19 @@ void MainWindow::on_buttonWelcome_clicked()
                               QMessageBox::Ok);
     }
 }
-void MainWindow::on_buttonForgotPassword_clicked()
+
+
+void MainWindow::on_yourPasswordButton_clicked()
 {
-    QString passwords;
-
+    QString username = ui->lineEditUsername_2->text();
     for (const User &user : User::userList) {
-        passwords += "Username: " + user.getUsername() + ", Password: " + user.getPassword() + "\n";
+        if (user.getUsername() == username) {
+            QMessageBox::information(this, tr("Your Password"), tr("Le mot de passe pour %1 est: %2").arg(username).arg(user.getPassword()));
+            return;
+        }
     }
-
-    QMessageBox::information(this, tr("Passwords List"), passwords);
+    QMessageBox::warning(this, tr("Your Password"), tr("Utilisateur non trouvé."));
 }
-
 void MainWindow::on_pushButton_ajouter_clicked()
 {
     qDebug() << "Ajouter button clicked";

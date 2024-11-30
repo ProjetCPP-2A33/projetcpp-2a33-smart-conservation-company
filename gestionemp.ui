@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1728</width>
-    <height>985</height>
+    <width>1652</width>
+    <height>950</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
-      <width>1721</width>
-      <height>871</height>
+      <y>0</y>
+      <width>1621</width>
+      <height>811</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -34,9 +34,9 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>0</y>
+        <y>10</y>
         <width>1591</width>
-        <height>781</height>
+        <height>761</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -53,8 +53,8 @@ border-radius: 15px;                /* Rounded corners with 15px radius */</stri
       <widget class="QFrame" name="frame_16">
        <property name="geometry">
         <rect>
-         <x>0</x>
-         <y>100</y>
+         <x>30</x>
+         <y>80</y>
          <width>1371</width>
          <height>1001</height>
         </rect>
@@ -65,6 +65,319 @@ border-radius: 15px;                /* Rounded corners with 15px radius */</stri
        <property name="frameShadow">
         <enum>QFrame::Shadow::Raised</enum>
        </property>
+       <widget class="QFrame" name="frame_17">
+        <property name="geometry">
+         <rect>
+          <x>110</x>
+          <y>0</y>
+          <width>1261</width>
+          <height>671</height>
+         </rect>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Raised</enum>
+        </property>
+        <widget class="QFrame" name="frame_19">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>70</y>
+           <width>1241</width>
+           <height>551</height>
+          </rect>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::Shape::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Shadow::Raised</enum>
+         </property>
+         <widget class="QFrame" name="frame_21">
+          <property name="geometry">
+           <rect>
+            <x>420</x>
+            <y>20</y>
+            <width>581</width>
+            <height>381</height>
+           </rect>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Shape::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6">
+           <item>
+            <widget class="QLineEdit" name="lineEditUsername">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+    background-color: #E8F5E9; /* Vert très clair */
+    color: #1f472e;
+    font-family: &quot;Roboto&quot;, sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #81C784;
+    border-radius: 4px;
+}
+QLineEdit:focus {
+    border: 1px solid #4CAF50; /* Bordure plus foncée lorsqu'on clique */
+    background-color: #F1F8E9;
+}</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="lineEditPassword">
+             <property name="styleSheet">
+              <string notr="true">QLineEdit {
+    background-color: #E8F5E9; /* Vert très clair */
+    color: #1f472e;
+    font-family: &quot;Roboto&quot;, sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #81C784;
+    border-radius: 4px;
+}
+QLineEdit:focus {
+    border: 1px solid #4CAF50; /* Bordure plus foncée lorsqu'on clique */
+    background-color: #F1F8E9;
+}</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QLabel" name="label_14">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>250</y>
+            <width>251</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+    background-color: rgb(28, 168, 79); /* Couleur de fond */
+    border: 2px solid #1C8A4F; /* Bordure assortie */
+    border-radius: 5px; /* Coins arrondis */
+    color: black; /* Texte en noir */
+    font-size: 14px; /* Taille de police */
+    padding: 5px; /* Espacement interne */
+    font-weight: bold; /* Texte en gras */
+}
+
+QLabel:hover {
+    background-color: rgb(20, 140, 60); /* Couleur de fond change lorsque l'on survole le label */
+}
+
+QLabel:focus {
+    border: 2px solid #0D6E3F; /* Bordure qui change en cas de focus (utile pour les QLabel avec interaction) */
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Password</string>
+          </property>
+         </widget>
+         <widget class="QLabel" name="label_13">
+          <property name="geometry">
+           <rect>
+            <x>100</x>
+            <y>120</y>
+            <width>251</width>
+            <height>51</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QLabel {
+    background-color: rgb(28, 168, 79); /* Couleur de fond */
+    border: 2px solid #1C8A4F; /* Bordure assortie */
+    border-radius: 5px; /* Coins arrondis */
+    color: black; /* Texte en noir */
+    font-size: 14px; /* Taille de police */
+    padding: 5px; /* Espacement interne */
+    font-weight: bold; /* Texte en gras */
+}
+
+QLabel:hover {
+    background-color: rgb(20, 140, 60); /* Couleur de fond change lorsque l'on survole le label */
+}
+
+QLabel:focus {
+    border: 2px solid #0D6E3F; /* Bordure qui change en cas de focus (utile pour les QLabel avec interaction) */
+}
+</string>
+          </property>
+          <property name="text">
+           <string>Login</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="buttonWelcome">
+          <property name="geometry">
+           <rect>
+            <x>470</x>
+            <y>450</y>
+            <width>215</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E8F5E9; /* Vert très clair */
+    color: #1f472e;
+    font-family: &quot;Roboto&quot;, sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #81C784;
+    border-radius: 4px;
+}
+
+QPushButton:hover {
+    background-color: #C8E6C9; /* Légèrement plus foncé au survol */
+}
+
+QPushButton:pressed {
+    background-color: #A5D6A7; /* Encore plus foncé lorsqu'il est pressé */
+    border: 1px solid #4CAF50; /* Bordure plus foncée lorsqu'on clique */
+}
+</string>
+          </property>
+          <property name="text">
+           <string>welcome</string>
+          </property>
+         </widget>
+         <widget class="QPushButton" name="buttonForgotPassword2">
+          <property name="geometry">
+           <rect>
+            <x>800</x>
+            <y>450</y>
+            <width>191</width>
+            <height>29</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton {
+    background-color: #E8F5E9; /* Vert très clair */
+    color: #1f472e;
+    font-family: &quot;Roboto&quot;, sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #81C784;
+    border-radius: 4px;
+}
+
+QPushButton:hover {
+    background-color: #C8E6C9; /* Légèrement plus foncé au survol */
+}
+
+QPushButton:pressed {
+    background-color: #A5D6A7; /* Encore plus foncé lorsqu'il est pressé */
+    border: 1px solid #4CAF50; /* Bordure plus foncée lorsqu'on clique */
+}
+</string>
+          </property>
+          <property name="text">
+           <string>forgot your password</string>
+          </property>
+         </widget>
+         <widget class="QStackedWidget" name="stackedWidget">
+          <property name="geometry">
+           <rect>
+            <x>520</x>
+            <y>20</y>
+            <width>701</width>
+            <height>401</height>
+           </rect>
+          </property>
+          <widget class="QWidget" name="page">
+           <widget class="QPushButton" name="pushButton_fermer">
+            <property name="geometry">
+             <rect>
+              <x>70</x>
+              <y>280</y>
+              <width>161</width>
+              <height>81</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #E8F5E9; /* Vert très clair */
+    color: #1f472e;
+    font-family: &quot;Roboto&quot;, sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #81C784;
+    border-radius: 4px;
+}
+
+QPushButton:hover {
+    background-color: #C8E6C9; /* Légèrement plus foncé au survol */
+}
+
+QPushButton:pressed {
+    background-color: #A5D6A7; /* Encore plus foncé lorsqu'il est pressé */
+    border: 1px solid #4CAF50; /* Bordure plus foncée lorsqu'on clique */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>fermer</string>
+            </property>
+           </widget>
+           <widget class="QLineEdit" name="lineEditUsername_2">
+            <property name="geometry">
+             <rect>
+              <x>150</x>
+              <y>110</y>
+              <width>411</width>
+              <height>61</height>
+             </rect>
+            </property>
+           </widget>
+           <widget class="QPushButton" name="yourPasswordButton">
+            <property name="geometry">
+             <rect>
+              <x>440</x>
+              <y>280</y>
+              <width>181</width>
+              <height>81</height>
+             </rect>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+    background-color: #E8F5E9; /* Vert très clair */
+    color: #1f472e;
+    font-family: &quot;Roboto&quot;, sans-serif;
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #81C784;
+    border-radius: 4px;
+}
+
+QPushButton:hover {
+    background-color: #C8E6C9; /* Légèrement plus foncé au survol */
+}
+
+QPushButton:pressed {
+    background-color: #A5D6A7; /* Encore plus foncé lorsqu'il est pressé */
+    border: 1px solid #4CAF50; /* Bordure plus foncée lorsqu'on clique */
+}
+</string>
+            </property>
+            <property name="text">
+             <string>your password</string>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="page_2"/>
+         </widget>
+        </widget>
+       </widget>
       </widget>
       <widget class="QFrame" name="frame_23">
        <property name="geometry">
@@ -149,228 +462,6 @@ border-radius: 15px;                /* Rounded corners with 15px radius */</stri
         </property>
        </widget>
       </widget>
-      <widget class="QFrame" name="frame_17">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>90</y>
-         <width>1511</width>
-         <height>681</height>
-        </rect>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::Shape::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Shadow::Raised</enum>
-       </property>
-       <widget class="QFrame" name="frame_19">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>60</y>
-          <width>1321</width>
-          <height>561</height>
-         </rect>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Shape::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Shadow::Raised</enum>
-        </property>
-        <widget class="QFrame" name="frame_21">
-         <property name="geometry">
-          <rect>
-           <x>420</x>
-           <y>20</y>
-           <width>581</width>
-           <height>381</height>
-          </rect>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::Shape::StyledPanel</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Shadow::Raised</enum>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
-          <item>
-           <widget class="QLineEdit" name="lineEditUsername">
-            <property name="styleSheet">
-             <string notr="true">QLineEdit {
-    background-color: #E8F5E9; /* Vert très clair */
-    color: #1f472e;
-    font-family: &quot;Roboto&quot;, sans-serif;
-    font-size: 14px;
-    padding: 5px;
-    border: 1px solid #81C784;
-    border-radius: 4px;
-}
-QLineEdit:focus {
-    border: 1px solid #4CAF50; /* Bordure plus foncée lorsqu'on clique */
-    background-color: #F1F8E9;
-}</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEditPassword">
-            <property name="styleSheet">
-             <string notr="true">QLineEdit {
-    background-color: #E8F5E9; /* Vert très clair */
-    color: #1f472e;
-    font-family: &quot;Roboto&quot;, sans-serif;
-    font-size: 14px;
-    padding: 5px;
-    border: 1px solid #81C784;
-    border-radius: 4px;
-}
-QLineEdit:focus {
-    border: 1px solid #4CAF50; /* Bordure plus foncée lorsqu'on clique */
-    background-color: #F1F8E9;
-}</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-        <widget class="QLabel" name="label_14">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>250</y>
-           <width>251</width>
-           <height>51</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QLabel {
-    background-color: rgb(28, 168, 79); /* Couleur de fond */
-    border: 2px solid #1C8A4F; /* Bordure assortie */
-    border-radius: 5px; /* Coins arrondis */
-    color: black; /* Texte en noir */
-    font-size: 14px; /* Taille de police */
-    padding: 5px; /* Espacement interne */
-    font-weight: bold; /* Texte en gras */
-}
-
-QLabel:hover {
-    background-color: rgb(20, 140, 60); /* Couleur de fond change lorsque l'on survole le label */
-}
-
-QLabel:focus {
-    border: 2px solid #0D6E3F; /* Bordure qui change en cas de focus (utile pour les QLabel avec interaction) */
-}
-</string>
-         </property>
-         <property name="text">
-          <string>Password</string>
-         </property>
-        </widget>
-        <widget class="QLabel" name="label_13">
-         <property name="geometry">
-          <rect>
-           <x>100</x>
-           <y>120</y>
-           <width>251</width>
-           <height>51</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QLabel {
-    background-color: rgb(28, 168, 79); /* Couleur de fond */
-    border: 2px solid #1C8A4F; /* Bordure assortie */
-    border-radius: 5px; /* Coins arrondis */
-    color: black; /* Texte en noir */
-    font-size: 14px; /* Taille de police */
-    padding: 5px; /* Espacement interne */
-    font-weight: bold; /* Texte en gras */
-}
-
-QLabel:hover {
-    background-color: rgb(20, 140, 60); /* Couleur de fond change lorsque l'on survole le label */
-}
-
-QLabel:focus {
-    border: 2px solid #0D6E3F; /* Bordure qui change en cas de focus (utile pour les QLabel avec interaction) */
-}
-</string>
-         </property>
-         <property name="text">
-          <string>Login</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="buttonWelcome">
-         <property name="geometry">
-          <rect>
-           <x>470</x>
-           <y>450</y>
-           <width>215</width>
-           <height>29</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-    background-color: #E8F5E9; /* Vert très clair */
-    color: #1f472e;
-    font-family: &quot;Roboto&quot;, sans-serif;
-    font-size: 14px;
-    padding: 5px;
-    border: 1px solid #81C784;
-    border-radius: 4px;
-}
-
-QPushButton:hover {
-    background-color: #C8E6C9; /* Légèrement plus foncé au survol */
-}
-
-QPushButton:pressed {
-    background-color: #A5D6A7; /* Encore plus foncé lorsqu'il est pressé */
-    border: 1px solid #4CAF50; /* Bordure plus foncée lorsqu'on clique */
-}
-</string>
-         </property>
-         <property name="text">
-          <string>welcome</string>
-         </property>
-        </widget>
-        <widget class="QPushButton" name="buttonForgotPassword">
-         <property name="geometry">
-          <rect>
-           <x>770</x>
-           <y>450</y>
-           <width>215</width>
-           <height>29</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">QPushButton {
-    background-color: #E8F5E9; /* Vert très clair */
-    color: #1f472e;
-    font-family: &quot;Roboto&quot;, sans-serif;
-    font-size: 14px;
-    padding: 5px;
-    border: 1px solid #81C784;
-    border-radius: 4px;
-}
-
-QPushButton:hover {
-    background-color: #C8E6C9; /* Légèrement plus foncé au survol */
-}
-
-QPushButton:pressed {
-    background-color: #A5D6A7; /* Encore plus foncé lorsqu'il est pressé */
-    border: 1px solid #4CAF50; /* Bordure plus foncée lorsqu'on clique */
-}
-</string>
-         </property>
-         <property name="text">
-          <string>forgot your password</string>
-         </property>
-        </widget>
-       </widget>
-      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_2">
@@ -417,8 +508,8 @@ border-radius: 15px;                /* Rounded corners with 15px radius */</stri
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>1451</width>
-          <height>751</height>
+          <width>1371</width>
+          <height>681</height>
          </rect>
         </property>
         <property name="frameShape">
@@ -1248,12 +1339,29 @@ QLineEdit:focus {
          <property name="geometry">
           <rect>
            <x>1010</x>
-           <y>210</y>
+           <y>200</y>
            <width>361</width>
            <height>321</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4"/>
+        </widget>
+        <widget class="QPushButton" name="pushButton_suivant">
+         <property name="geometry">
+          <rect>
+           <x>1130</x>
+           <y>100</y>
+           <width>131</width>
+           <height>51</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(10, 255, 18);</string>
+         </property>
+         <property name="text">
+          <string>suivant</string>
+         </property>
         </widget>
        </widget>
       </widget>
@@ -1575,6 +1683,34 @@ QPushButton:pressed {
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="tab_3">
+     <attribute name="title">
+      <string>Page</string>
+     </attribute>
+     <widget class="QLineEdit" name="lineEditID">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>120</y>
+        <width>191</width>
+        <height>61</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="verifyButton">
+      <property name="geometry">
+       <rect>
+        <x>370</x>
+        <y>240</y>
+        <width>83</width>
+        <height>29</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>verifer</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -1582,7 +1718,7 @@ QPushButton:pressed {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1728</width>
+     <width>1652</width>
      <height>25</height>
     </rect>
    </property>
