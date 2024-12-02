@@ -18,8 +18,8 @@
 #include <QGraphicsScene>
 #include <QPen>
 
-
-
+#include <QVBoxLayout>
+#include "arduino.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -29,6 +29,22 @@ MainWindow::MainWindow(QWidget *parent)
     , idActuel(-1) // ID initialisé à -1 (aucun équipement sélectionné)
 {
     ui->setupUi(this);
+    int ret = arduino.connect_arduino();
+    if (ret == 0) {
+        qDebug() << "Arduino connecté sur le port :" << arduino.getarduino_port_name();
+    } else if (ret == 1) {
+        qDebug() << "Erreur : Impossible d'ouvrir le port série.";
+    } else {
+        qDebug() << "Erreur : Arduino non détecté.";
+    }
+    // Vérification de la connexion à la base de données
+    QSqlDatabase db = QSqlDatabase::database();
+    if (!db.isOpen()) {
+        qDebug() << "La connexion à la base de données a échoué.";
+    } else {
+        qDebug() << "Connexion à la base de données réussie.";
+    }
+    setWindowTitle("Gestion des équipements");
 
 
 
@@ -47,6 +63,87 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() {
     delete ui;
     delete model;
+}
+
+void MainWindow::genererStatistiquesParEtat()
+{
+    QSqlQuery query;
+    query.prepare("SELECT ETAT, COUNT(*) AS nombre_equipements FROM EQUIPEMENT GROUP BY ETAT");
+
+    if (!query.exec()) {
+        qDebug() << "Erreur de requête SQL : " << query.lastError();
+        QMessageBox::critical(this, "Erreur", "La requête SQL a échoué. Vérifiez votre base de données.");
+        return;
+    }
+
+    if (!query.next()) {
+        QMessageBox::information(this, "Aucune donnée", "Aucune donnée à afficher pour les statistiques.");
+        return;
+    }
+
+    // Créer une série pour le diagramme en secteurs
+    QPieSeries *series = new QPieSeries();
+    do {
+        QString etat = query.value("ETAT").toString();
+        int nombreEquipements = query.value("nombre_equipements").toInt();
+
+        // Générer une couleur aléatoire pour chaque tranche
+        QColor randomColor(rand() % 256, rand() % 256, rand() % 256);
+
+        QPieSlice *slice = series->append(etat + ": " + QString::number(nombreEquipements), nombreEquipements);
+        slice->setLabelVisible(true);
+        slice->setLabelPosition(QPieSlice::LabelOutside);
+        slice->setBrush(randomColor);  // Appliquer la couleur aléatoire
+    } while (query.next());
+
+    // Créer un graphique
+    QChart *chart = new QChart();
+    chart->addSeries(series);
+    chart->setTitle("Statistiques des équipements par état");
+    chart->setAnimationOptions(QChart::SeriesAnimations);
+
+    // Créer une vue pour afficher le graphique
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    // Créer un bouton "Fermer"
+    QPushButton *closeButton = new QPushButton("Fermer");
+    closeButton->setStyleSheet(
+        "QPushButton {"
+        "background-color: #f0f0f0;"
+        "font-size: 14px;"
+        "padding: 5px 10px;"
+        "}"
+        );
+
+    connect(closeButton, &QPushButton::clicked, this, [this]() {
+        ui->stackedWidget_stat->hide();
+    });
+
+    // Créer une nouvelle page pour le QStackedWidget
+    QWidget *statPage = new QWidget();
+    QVBoxLayout *pageLayout = new QVBoxLayout(statPage);
+    pageLayout->addWidget(chartView);
+    pageLayout->addWidget(closeButton);
+
+    // Supprimer les anciennes pages du QStackedWidget
+    while (ui->stackedWidget_stat->count() > 0) {
+        QWidget *widgetToRemove = ui->stackedWidget_stat->widget(0);
+        ui->stackedWidget_stat->removeWidget(widgetToRemove);
+        widgetToRemove->deleteLater();
+    }
+
+    // Ajouter la nouvelle page au QStackedWidget
+    ui->stackedWidget_stat->addWidget(statPage);
+
+    // Afficher la nouvelle page
+    ui->stackedWidget_stat->setCurrentWidget(statPage);
+    ui->stackedWidget_stat->show();
+}
+// Connecter cette fonction au bouton "pushButton_stat"
+void MainWindow::on_pushButton_stat_clicked()
+{
+    genererStatistiquesParEtat();
 }
 
 // Bouton Ajouter
@@ -332,10 +429,121 @@ void MainWindow::on_pushButtonRecherche_clicked() {
     QMessageBox::information(this, "Résultat de la recherche", resultat);
 }
 
-void MainWindow::on_pushButton_statistiques_clicked() {
-    // Appeler la fonction getStatistiques pour récupérer les résultats
-    QString statistiques = Equipement::getStatistiques();
+void MainWindow::updateEtatCycle(QMap<QString, int> statistiques)
+{
+    int total = 0;
+    for (auto count : statistiques.values()) {
+        total += count; // Calcul du total des équipements
+    }
 
-    // Afficher les résultats dans une QMessageBox
-    QMessageBox::information(this, "Statistiques des équipements", statistiques);
+    if (total == 0) {
+        qDebug() << "Aucun équipement trouvé pour les statistiques.";
+        return;
+    }
+
+    // Accéder à la scène actuelle
+    QGraphicsScene *scene = ui->graphicsView->scene();
+    if (!scene) {
+        scene = new QGraphicsScene();
+        ui->graphicsView->setScene(scene);
+    } else {
+        scene->clear();
+    }
+
+    int radius = 100;  // Rayon du cercle
+    int centerX = 150; // Centre X
+    int centerY = 150; // Centre Y
+
+    qreal startAngle = 90; // Angle de départ
+
+    // Générer les arcs pour chaque état
+    for (auto it = statistiques.begin(); it != statistiques.end(); ++it) {
+        QString etat = it.key();
+        int count = it.value();
+
+        qreal angleSpan = 360.0 * count / total; // Portion de l'angle
+
+        QPainterPath path;
+        path.moveTo(centerX, centerY);
+        path.arcTo(centerX - radius, centerY - radius, 2 * radius, 2 * radius, startAngle, -angleSpan);
+
+        QGraphicsPathItem *arc = scene->addPath(path, QPen(Qt::black), QBrush(Qt::blue));
+        if (etat == "bon état") arc->setBrush(Qt::green);
+        else if (etat == "état moyen") arc->setBrush(Qt::yellow);
+        else if (etat == "état mauvais") arc->setBrush(Qt::red);
+
+        // Ajouter le pourcentage
+        QString percentageText = QString::number((count * 100.0) / total, 'f', 1) + "%";
+        QGraphicsTextItem *text = new QGraphicsTextItem(etat + ": " + percentageText);
+        text->setFont(QFont("Arial", 10, QFont::Bold));
+        text->setDefaultTextColor(Qt::black);
+        text->setPos(centerX + radius * qCos(qDegreesToRadians(startAngle - angleSpan / 2)) - text->boundingRect().width() / 2,
+                     centerY - radius * qSin(qDegreesToRadians(startAngle - angleSpan / 2)) - text->boundingRect().height() / 2);
+        scene->addItem(text);
+
+        startAngle -= angleSpan; // Ajuster l'angle de départ pour le prochain segment
+    }
+
+    ui->graphicsView->setScene(scene);
 }
+
+void MainWindow::on_pushButton_stats_clicked()
+{
+    Equipement equipement;
+    QMap<QString, int> statistiques = equipement.getEtatStatistics();
+
+    if (statistiques.isEmpty()) {
+        qDebug() << "Aucune donnée pour les statistiques.";
+        return;
+    }
+
+    updateEtatCycle(statistiques); // Mettre à jour le graphique
+}
+
+
+
+
+void MainWindow::on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint)
+{
+
+}
+
+void MainWindow::on_Button_Arduino_clicked()
+{
+    QString id_equipement = ui->lineEdit_Arduino->text();
+    if (id_equipement.isEmpty()) {
+        QMessageBox::warning(this, "Erreur", "Veuillez entrer un ID d'équipement.");
+        return;
+    }
+
+    // Récupération de l'état de l'équipement à partir de la base de données
+    QSqlQuery query;
+    query.prepare("SELECT ETAT FROM equipement WHERE ID_EQUIP = :id");
+    query.bindValue(":id", id_equipement);
+
+    if (query.exec() && query.next()) {
+        QString etat = query.value(0).toString();
+
+        QByteArray command;
+        if (etat == "bon etat") {
+            command = "buzzer_on\n"; // Commande pour activer le buzzer une fois
+        } else if (etat == "etat moyen") {
+            // Envoyer deux commandes pour deux bips
+            command = "buzzer_on\nbuzzer_on\n";
+        } else if (etat == "etat mauvais") {
+            // Envoyer trois commandes pour trois bips
+            command = "buzzer_on\nbuzzer_on\nbuzzer_on\n";
+        } else {
+            QMessageBox::information(this, "État inconnu", "L'état de l'équipement n'est pas reconnu.");
+            return;
+        }
+
+        // Envoi de la commande à l'Arduino
+        arduino.write_to_arduino(command);
+    } else {
+        QMessageBox::warning(this, "Erreur", "Équipement non trouvé.");
+    }
+}
+
+
+

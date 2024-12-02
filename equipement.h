@@ -11,6 +11,8 @@
 #include <QGraphicsScene>
 #include <QPen>
 #include <QMap>
+#include <QSqlError>
+#include <QDebug>
 
 
 class Equipement {
@@ -33,7 +35,8 @@ public:
     static QString prevoirUsure(int id_equip);
     QString planifierMaintenance(int id);
     QString rechercherParId(int id);
-    static QString getStatistiques();
+    QMap<QString, int> getEtatStatistics(); // Récupère les statistiques des états*/
+
 
 };
 

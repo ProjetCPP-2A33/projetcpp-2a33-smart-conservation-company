@@ -14,9 +14,12 @@
 #include <QtCharts/QPieSlice>
 #include <QGraphicsScene>
 #include <QPen>
-
-
+#include <QGraphicsView>
+#include <QSerialPort>
+#include <QSerialPortInfo>
+#include <QDebug>
 #include "equipement.h"
+#include "arduino.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -43,13 +46,22 @@ private slots:
     void on_pushButtonPlanifier_clicked();
     bool exporterPDF(const QString &nomFichier, QAbstractItemModel *model);
     void on_pushButtonRecherche_clicked();
-    void on_pushButton_statistiques_clicked();
+    void on_pushButton_stats_clicked(); // Slot pour afficher les statistiques
+
+
+    void genererStatistiquesParEtat();
+    void on_pushButton_stat_clicked();
+    void on_graphicsView_rubberBandChanged(const QRect &viewportRect, const QPointF &fromScenePoint, const QPointF &toScenePoint);
+    void on_Button_Arduino_clicked();
+private:
+    void updateEtatCycle(QMap<QString, int> statistiques); // Méthode pour mettre à jour le graphique
 
 
 private:
     Ui::MainWindow *ui;
     QSqlQueryModel* model; // Modèle pour le QTableView
     int idActuel;
+    Arduino arduino;
 
 
 };
