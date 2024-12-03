@@ -1,0 +1,10 @@
+release/arduino.o
+release/connection.o
+release/delegatedeuxbouttons.o
+release/main.o
+release/mainwindow.o
+release/produits.o
+release/qrc_ressources.o
+release/moc_arduino.o
+release/moc_delegatedeuxbouttons.o
+release/moc_mainwindow.o
