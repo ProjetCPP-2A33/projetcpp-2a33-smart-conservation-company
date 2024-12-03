@@ -1,5 +1,6 @@
 #include "ui_mainwindow.h"
 #include "mainwindow.h"
+#include "arduino.h"
 #include <QMessageBox>
 #include <QSqlQuery>
 #include <QSqlDatabase>//connection avec BD
@@ -26,23 +27,34 @@
 #include <QSqlRecord>//ligne de base
 #include <QTextCharFormat>//style de text
 
+MainWindow::MainWindow(QWidget *parent)
+    : QMainWindow(parent), ui(new Ui::MainWindow), arduino(new Arduino(this)) {
+    ui->setupUi(this);
 
-MainWindow::MainWindow(QWidget *parent) :// cons mt3 widget
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)//
-{
-    ui->setupUi(this);// configure l'interface a partir du fich .ui
-    ui->tableView->setModel(Ctemp.afficher());// charge donne besh thoteha f tableView
-    connect(ui->tableView, SIGNAL(entered(QModelIndex)), this, SLOT(on_tableView_hoveredRow(QModelIndex)));// connect signal a une fonction eli hua onTableViewClicked
-    setupConnections();//connection entre signal et fonction
+    // Configuration initiale de l'interface
+    ui->tableView->setModel(Ctemp.afficher()); // Charger les données dans le `tableView`
+
+    // Connecter le signal du `tableView` à une fonction
+    connect(ui->tableView, SIGNAL(entered(QModelIndex)), this, SLOT(on_tableView_hoveredRow(QModelIndex)));
 
     // Vérification du nombre de lignes dans le modèle
-    QSqlQueryModel *model = qobject_cast<QSqlQueryModel *>(ui->tableView->model());//verification si tableView
+    QSqlQueryModel *model = qobject_cast<QSqlQueryModel *>(ui->tableView->model());
     if (model) {
         qDebug() << model->rowCount() << "lignes dans le modèle.";
     }
 
+    // Configuration de la communication avec Arduino
+    if (!arduino->connectToArduino()) {
+        qDebug() << "Erreur : Impossible de connecter à Arduino.";
+    } else {
+        qDebug() << "Arduino connecté avec succès.";
+    }
+
+    // Ajouter les connexions spécifiques à votre projet
+    setupConnections();
 }
+
+
 
 MainWindow::~MainWindow() {
     delete ui;
@@ -632,6 +644,41 @@ void MainWindow::restaurerEtatTableView()
         qDebug() << "Modèle restauré avec la requête:" << m_previousQuery;
     }
 }*/
+
+
+
+void MainWindow::on_sendButton_clicked() {
+    QString idCommande = ui->lineEdit->text(); // Lire l'ID de commande
+    if (idCommande.isEmpty()) {
+        qDebug() << "ID de commande vide.";
+
+        // Afficher un message d'erreur si l'ID est vide
+        QMessageBox::warning(this, "Erreur", "L'ID de commande est vide. Veuillez entrer un ID valide.");
+        return;
+    }
+
+    // Connexion à la base de données
+    QSqlQuery query;//Creation requette sql
+    query.prepare("SELECT etatCommande FROM commandes WHERE id = :id");
+    query.bindValue(":id", idCommande); //associer id a la requette
+
+    if (query.exec() && query.next()) {// si commande trouver
+        QString etatCommande = query.value(0).toString(); // Récupérer l'état
+        qDebug() << "État envoyé à Arduino :" << etatCommande;
+
+        // Afficher un message d'information
+        QMessageBox::information(this, "État de la commande", "L'état de la commande est : " + etatCommande);
+
+        // Envoi de l'état à Arduino
+        arduino->sendToArduino(etatCommande);
+    } else {
+        qDebug() << "Commande introuvable.";
+
+        // Afficher un message d'erreur si la commande n'est pas trouvée
+        QMessageBox::critical(this, "Erreur", "Commande introuvable. Veuillez vérifier l'ID.");
+    }
+}
+
 
 
 

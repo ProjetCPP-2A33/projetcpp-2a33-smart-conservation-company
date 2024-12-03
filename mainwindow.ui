@@ -54,7 +54,7 @@ border-radius: 15px;                /* Rounded corners with 15px radius */
       <widget class="QPushButton" name="pushButton_332">
        <property name="geometry">
         <rect>
-         <x>40</x>
+         <x>30</x>
          <y>30</y>
          <width>93</width>
          <height>28</height>
@@ -68,9 +68,9 @@ border-radius: 15px;                /* Rounded corners with 15px radius */
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>20</y>
-         <width>41</width>
-         <height>41</height>
+         <y>30</y>
+         <width>31</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -87,7 +87,7 @@ border-radius: 15px;                /* Rounded corners with 15px radius */
       <widget class="QPushButton" name="pushButton_339">
        <property name="geometry">
         <rect>
-         <x>180</x>
+         <x>150</x>
          <y>30</y>
          <width>93</width>
          <height>28</height>
@@ -100,10 +100,10 @@ border-radius: 15px;                /* Rounded corners with 15px radius */
       <widget class="QLabel" name="label_766">
        <property name="geometry">
         <rect>
-         <x>140</x>
-         <y>20</y>
-         <width>41</width>
-         <height>41</height>
+         <x>120</x>
+         <y>30</y>
+         <width>31</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -117,26 +117,13 @@ border-radius: 15px;                /* Rounded corners with 15px radius */
         <pixmap>:/newPrefix/layers.svg</pixmap>
        </property>
       </widget>
-      <widget class="QPushButton" name="historique">
-       <property name="geometry">
-        <rect>
-         <x>320</x>
-         <y>30</y>
-         <width>93</width>
-         <height>28</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>historique </string>
-       </property>
-      </widget>
       <widget class="QLabel" name="label_767">
        <property name="geometry">
         <rect>
-         <x>280</x>
-         <y>20</y>
-         <width>41</width>
-         <height>41</height>
+         <x>240</x>
+         <y>30</y>
+         <width>31</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -336,6 +323,29 @@ border-radius: 15px;                /* Rounded corners with 15px radius */
        </property>
        <property name="text">
         <string>calendrier</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="sendButton">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>30</y>
+         <width>131</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>arduino </string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>0</y>
+         <width>113</width>
+         <height>26</height>
+        </rect>
        </property>
       </widget>
      </widget>

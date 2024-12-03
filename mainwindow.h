@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "arduino.h"
 #include "commande.h"
 #include "qcalendarwidget.h"
 
@@ -16,6 +17,8 @@ class MainWindow : public QMainWindow {
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+    QString getEtatCommande(const QString &id);
 
 private slots:
     void on_pushButton_331_clicked();  // Ajouter une commande
@@ -37,6 +40,7 @@ private slots:
     //void afficherToutesLesCommandes();
    // void restaurerEtatTableView();
    // void sauvegarderEtatTableView();
+    void on_sendButton_clicked();
 
 
 
@@ -46,6 +50,7 @@ private:
     Commande Ctemp;// instance de commande
     QSqlQueryModel m_previousModel;
      QString m_previousQuery;
+     Arduino *arduino;
 
 
 

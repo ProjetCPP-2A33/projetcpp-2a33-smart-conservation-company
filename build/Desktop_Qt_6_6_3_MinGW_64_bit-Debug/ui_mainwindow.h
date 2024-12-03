@@ -40,7 +40,6 @@ public:
     QLabel *label_765;
     QPushButton *pushButton_339;
     QLabel *label_766;
-    QPushButton *historique;
     QLabel *label_767;
     QLabel *label_768;
     QLabel *label_769;
@@ -54,6 +53,8 @@ public:
     QLineEdit *ide;
     QLabel *label_772;
     QPushButton *calendrier;
+    QPushButton *sendButton;
+    QLineEdit *lineEdit;
     QFrame *frame_205;
     QPushButton *pushButton_331;
     QFrame *frame_206;
@@ -137,28 +138,25 @@ public:
         frame_209->setFrameShadow(QFrame::Shadow::Raised);
         pushButton_332 = new QPushButton(frame_209);
         pushButton_332->setObjectName("pushButton_332");
-        pushButton_332->setGeometry(QRect(40, 30, 93, 28));
+        pushButton_332->setGeometry(QRect(30, 30, 93, 28));
         label_765 = new QLabel(frame_209);
         label_765->setObjectName("label_765");
-        label_765->setGeometry(QRect(0, 20, 41, 41));
+        label_765->setGeometry(QRect(0, 30, 31, 31));
         label_765->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
 ""));
         label_765->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/edit.svg")));
         pushButton_339 = new QPushButton(frame_209);
         pushButton_339->setObjectName("pushButton_339");
-        pushButton_339->setGeometry(QRect(180, 30, 93, 28));
+        pushButton_339->setGeometry(QRect(150, 30, 93, 28));
         label_766 = new QLabel(frame_209);
         label_766->setObjectName("label_766");
-        label_766->setGeometry(QRect(140, 20, 41, 41));
+        label_766->setGeometry(QRect(120, 30, 31, 31));
         label_766->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
 ""));
         label_766->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/layers.svg")));
-        historique = new QPushButton(frame_209);
-        historique->setObjectName("historique");
-        historique->setGeometry(QRect(320, 30, 93, 28));
         label_767 = new QLabel(frame_209);
         label_767->setObjectName("label_767");
-        label_767->setGeometry(QRect(280, 20, 41, 41));
+        label_767->setGeometry(QRect(240, 30, 31, 31));
         label_767->setStyleSheet(QString::fromUtf8("background-color: rgb(28, 168, 79);\n"
 ""));
         label_767->setPixmap(QPixmap(QString::fromUtf8(":/newPrefix/fast-forward.svg")));
@@ -213,6 +211,12 @@ public:
         calendrier = new QPushButton(frame_209);
         calendrier->setObjectName("calendrier");
         calendrier->setGeometry(QRect(470, 30, 93, 29));
+        sendButton = new QPushButton(frame_209);
+        sendButton->setObjectName("sendButton");
+        sendButton->setGeometry(QRect(270, 30, 131, 31));
+        lineEdit = new QLineEdit(frame_209);
+        lineEdit->setObjectName("lineEdit");
+        lineEdit->setGeometry(QRect(270, 0, 113, 26));
         frame_205 = new QFrame(tab_21);
         frame_205->setObjectName("frame_205");
         frame_205->setGeometry(QRect(200, 0, 321, 541));
@@ -755,7 +759,6 @@ public:
         label_765->setText(QString());
         pushButton_339->setText(QCoreApplication::translate("MainWindow", "Trier", nullptr));
         label_766->setText(QString());
-        historique->setText(QCoreApplication::translate("MainWindow", "historique ", nullptr));
         label_767->setText(QString());
         label_768->setText(QString());
         label_769->setText(QString());
@@ -768,6 +771,7 @@ public:
         statistique->setText(QCoreApplication::translate("MainWindow", "Statistiques", nullptr));
         label_772->setText(QString());
         calendrier->setText(QCoreApplication::translate("MainWindow", "calendrier", nullptr));
+        sendButton->setText(QCoreApplication::translate("MainWindow", "arduino ", nullptr));
         pushButton_331->setText(QCoreApplication::translate("MainWindow", " Ajouter une commande", nullptr));
         label_759->setText(QCoreApplication::translate("MainWindow", "id", nullptr));
         label_760->setText(QCoreApplication::translate("MainWindow", "dateCommande", nullptr));
