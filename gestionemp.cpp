@@ -1,53 +1,4 @@
-/*#include "gestionemp.h"
-#include "ui_gestionemp.h"
-#include "user.h"
-#include <QMessageBox>
-#include <QDebug>
-#include "employee.h"
-#include "connection.h"
-#include <QFileDialog>
-#include <QFile>
-#include <QTextStream>
-#include <QtCharts/QChartView>
-#include <QtCharts/QPieSeries>
-#include <QtCharts/QPieSlice>
-#include <QRegularExpression>
-#include <QRegularExpressionValidator>
-#include <QDialog>
-#include <QVBoxLayout>
-#include <QDesktopServices>
-#include <QUrl>
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
-
-    // Set Tab 1 (Login) as the current tab
-    ui->tabWidget->setCurrentIndex(0);
-
-    // Disable Tab 2 initially
-    ui->tabWidget->setTabEnabled(1, false);
-
-    // Connect the welcome button signal to the slot
-    connect(ui->buttonWelcome, &QPushButton::clicked, this, &MainWindow::on_buttonWelcome_clicked);
-
-    // Connect the backup button signal to the slot
-    connect(ui->buttonBackup, &QPushButton::clicked, this, &MainWindow::on_buttonBackup_clicked);
-    connect(ui->pushButton_suivant, &QPushButton::clicked, this, &MainWindow::on_pushButton_suivant_clicked);
-    ui->tabWidget->setTabEnabled(2, false);
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
-void MainWindow::on_pushButton_suivant_clicked() {
-    // Enable and switch to Tab 3
-    ui->tabWidget->setTabEnabled(2, true);
-    ui->tabWidget->setCurrentIndex(2);
-*/
 #include "gestionemp.h"
 #include "ui_gestionemp.h"
 #include "user.h"
@@ -87,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Disable Tab 2 and Tab 3 initially
     ui->tabWidget->setTabEnabled(1, false);
-    ui->tabWidget->setTabEnabled(2, false);
+   // ui->tabWidget->setTabEnabled(2, false);
 
     // Connect the welcome button signal to the slot
     connect(ui->buttonWelcome, &QPushButton::clicked, this, &MainWindow::on_buttonWelcome_clicked);
@@ -150,6 +101,7 @@ void MainWindow::on_verifyButton_clicked()
         QMessageBox::critical(this, tr("Erreur de requête"), tr("Erreur lors de l'exécution de la requête."));
     }
 }
+
 MainWindow::~MainWindow()
 {
     arduino->disconnectFromArduino();
@@ -462,5 +414,3 @@ void MainWindow::on_pushButton_stats_clicked(){
 
     qDebug() << "Statistiques mises à jour et graphique actualisé.";
 }
-
-
