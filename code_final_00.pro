@@ -3,6 +3,12 @@ QT += core gui sql network
 QT += charts
 QT += widgets
 QT += core serialport
+QT       +=sql
+QT       += pdf
+
+QT       += network
+QT       += axcontainer
+QT       +=serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -12,6 +18,8 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    arduino.cpp \
+    client.cpp \
     connection.cpp \
     employee.cpp \
     gestionemp.cpp \
@@ -19,6 +27,8 @@ SOURCES += \
     user.cpp
 
 HEADERS += \
+    arduino.h \
+    client.h \
     connection.h \
     employee.h \
     gestionemp.h \
