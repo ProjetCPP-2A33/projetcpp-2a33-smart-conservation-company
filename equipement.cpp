@@ -171,48 +171,28 @@ QString Equipement::rechercherParId(int id) {
     }
 }
 
-QString Equipement::getStatistiques() {
-    // Vérifier la connexion à la base de données
-    QSqlDatabase db = QSqlDatabase::database();
-    if (!db.isOpen()) {
-        return "Erreur : La base de données n'est pas ouverte.";
+QMap<QString, int> Equipement::getEtatStatistics()
+{
+    QMap<QString, int> statistiques;
+    QSqlQuery query;
+
+    // Requête SQL pour regrouper les équipements par état
+    query.prepare("SELECT ETAT, COUNT(*) FROM equipement GROUP BY ETAT");
+
+    if (query.exec()) {
+        while (query.next()) {
+            QString etat = query.value(0).toString(); // Extrait l'état
+            int count = query.value(1).toInt();       // Extrait le nombre
+            statistiques.insert(etat, count);         // Ajoute au QMap
+        }
+    } else {
+        qDebug() << "Erreur SQL :" << query.lastError().text();
     }
 
-    // Variables pour stocker les résultats
-    int nbBonEtat = 0;
-    int nbEtatMoyen = 0;
-    int nbEtatMauvais = 0;
-
-    // Requêtes pour chaque état
-    QSqlQuery queryBonEtat;
-    queryBonEtat.prepare("SELECT COUNT(*) FROM equipement WHERE etat = 'bon état'");
-    if (!queryBonEtat.exec() || !queryBonEtat.next()) {
-        return "Erreur lors de la récupération des données pour 'bon état': " + queryBonEtat.lastError().text();
-    }
-    nbBonEtat = queryBonEtat.value(0).toInt();
-
-    QSqlQuery queryEtatMoyen;
-    queryEtatMoyen.prepare("SELECT COUNT(*) FROM equipement WHERE etat = 'état moyen'");
-    if (!queryEtatMoyen.exec() || !queryEtatMoyen.next()) {
-        return "Erreur lors de la récupération des données pour 'état moyen': " + queryEtatMoyen.lastError().text();
-    }
-    nbEtatMoyen = queryEtatMoyen.value(0).toInt();
-
-    QSqlQuery queryEtatMauvais;
-    queryEtatMauvais.prepare("SELECT COUNT(*) FROM equipement WHERE etat = 'état mauvais'");
-    if (!queryEtatMauvais.exec() || !queryEtatMauvais.next()) {
-        return "Erreur lors de la récupération des données pour 'état mauvais': " + queryEtatMauvais.lastError().text();
-    }
-    nbEtatMauvais = queryEtatMauvais.value(0).toInt();
-
-    // Retourner les statistiques formatées
-    QString statistiques = QString("Statistiques des équipements par état :\n\n"
-                                   "Bon état : %1\n"
-                                   "État moyen : %2\n"
-                                   "État mauvais : %3")
-                               .arg(nbBonEtat)
-                               .arg(nbEtatMoyen)
-                               .arg(nbEtatMauvais);
-
-    return statistiques;
+    return statistiques; // Retourne les statistiques
 }
+
+
+
+
+
